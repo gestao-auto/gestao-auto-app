@@ -1,0 +1,87 @@
+// http://ionicframework.com/docs/theming/
+
+
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+
+/* header design */
+.toolbar-md{
+    .back-button-md{
+        width: 40px;
+        .back-button-icon-ios{
+            font-size: 2.3rem;
+        }
+    }
+    ion-title{
+        .toolbar-title-md{
+            color: color($colors,light);
+            text-transform: capitalize;
+            font-weight: normal;
+        }
+    }
+    .bar-button-default-md,.bar-button-md[icon-only]{
+        color: color($colors,light);
+        width: 40px;
+        ion-icon{
+            font-size: 1.4em;
+        }
+    }
+}
+
+/* searchbar */
+.searchbar-md{
+   .searchbar-input{
+       font-size: 1.5rem;
+   }
+}
+
+h3{
+    font-size: 1.5rem !important;
+}
+.main_header{
+    background: color($colors,primary);
+    color: color($colors,light);
+    font-weight: normal;
+    display: inline-block;
+    border-radius: 4px;
+    padding: 3px 15px;
+}
+.content-md {
+    background-color: #f6f2f1;
+}
+
+/*segment*/
+.segment-md{
+   .segment-button{
+       color: color($colors,light);
+   }
+}
+
+/*menu*/
+.menu-inner{
+    width: 85%;
+    background: transparent !important;
+    ion-header{
+        &:after{
+            background-image: none;
+        }
+        .toolbar-md ion-title{
+            .toolbar-title-md{
+                color: color($colors,primary);
+                font-weight: 500;
+            }
+        }
+    }
+
+}

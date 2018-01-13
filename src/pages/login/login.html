@@ -1,0 +1,29 @@
+<ion-content class="main_bg" padding>
+
+    <div style="margin: 0 auto;">
+        <ion-row>
+            <ion-col  no-padding align style="text-align:center">
+              <ion-img width="80" height="80" src="../../assets/img/gestaoauto.png" ></ion-img>
+            </ion-col>
+        </ion-row>
+    </div>
+    <form #loginForm="ngForm" (ngSubmit)="logar(loginForm.value)">
+      <div  class="app_form" margin-top>
+        <h3 text-uppercase style="text-align:center">Gestão Auto</h3>
+
+          <ion-list no-margin>
+              <ion-item no-lines>
+                  <ion-input type="usuario" name="usuario" placeholder="Usuario" ngModel></ion-input>
+              </ion-item>
+              <ion-item no-lines>
+                  <ion-input type="senha" name="senha" placeholder="Senha" ngModel></ion-input>
+              </ion-item>
+          </ion-list>
+
+          <button class="forgot-psw" (click)="forgotPassword()" ion-button clear small>Esqueceu a senha? Clique aqui!</button>
+          <button ion-button block color="primary" type="submit">Login</button>
+
+          <p [navPush]="'RegisterPage'" text-center>Novo aqui? Se cadastre!</p>
+      </div>
+    </form>
+</ion-content>

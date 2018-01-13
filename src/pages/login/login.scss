@@ -1,0 +1,44 @@
+page-login {
+    .scroll-content{
+        padding-bottom: 0 !important;
+    }
+}
+.main_bg{
+    background:url(../assets/img/bg.png);
+    @include background(cover,no-repeat,bottom);
+}
+.sign_social{
+    h3{
+        font-size: 1.6rem;
+        margin-left: 10px;
+        margin-top: 20px !important;
+        color: color($colors,primary);
+    }
+    .button-md{
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        ion-icon{
+            font-size: 2rem;
+        }
+    }
+}
+.app_form{
+    h3{
+       color: color($colors,primary);
+       margin-left: 10px;
+    }
+   .list-md{
+    .item-md{
+        background: none;
+        border: 1px solid color($colors,light) !important;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        font-size: 1.5rem;
+     }
+   }
+   .forgot-psw{
+       margin-top: -5px;
+       margin-bottom: 15px;
+   }
+}
