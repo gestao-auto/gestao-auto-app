@@ -6,6 +6,7 @@ import { ProprietarioProvider } from '../../providers/proprietario/proprietario'
 import { UsuarioProvider } from '../../providers/usuario/usuario';
 import { Proprietario } from '../../model/proprietario';
 import { JwtHelper } from "angular2-jwt";
+import { ToastController } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -23,19 +24,18 @@ export class ProprietarioPage {
     public navParams: NavParams,
     public storage : Storage,
     public view : ViewController,
+    private toastCtrl: ToastController,
     private propProvider: ProprietarioProvider) {
 
     this.codigoUsuario = null;
-    this.proprietario = new Proprietario(null, null, null, null, null, null);
+    this.proprietario = new Proprietario(null, null, null, null, null, null, null);
 
     this.storage.get('token').then(
          token => {
            this.codigoUsuario = this.jwtHelper.decodeToken(token).sub;
            this.get();
-         }
-      );
-  }
-
+         });
+    }
 
   get() {
     this.propProvider.get(this.codigoUsuario)
@@ -43,26 +43,31 @@ export class ProprietarioPage {
           if (proprietario != null) {
             this.proprietario = proprietario;
           }
-          console.log("OK", this.proprietario);
         }, (error) => {
-          console.log("Error", this.proprietario);
+          this.mostrarToast("Ops! Não conseguimos recuperar suas informações. Por favor, tente novamente.");
         })
   }
 
-  save() {
-    if (this.proprietario.codigo != undefined) {
-      this.update();
-    } else {
-      this.proprietario.codigoUsuario = this.codigoUsuario;
-      this.propProvider.create(this.proprietario)
-        .then((res) => {
-          if (res) {
-            this.navCtrl.push('HomePage');
-          }
-        }, (error) => {
-          console.log('Erro ao cadastrar proprietario', error);
-        });
+  submit() {
+    if (!this.valida()) {
+      return this.mostrarToast("Uma ou mais informações não foram preenchidas. Verifique!");
     }
+    if (this.proprietario.codigo != undefined) {
+        return this.update();
+    }
+    return this.save();
+  }
+
+  save() {
+    this.proprietario.codigoUsuario = this.codigoUsuario;
+    this.propProvider.create(this.proprietario)
+      .then((res) => {
+        if (res) {
+          this.navCtrl.push('HomePage');
+        }
+      }, (error) => {
+          this.mostrarToast("Ops! Ocorreu uma falha ao atualizar suas informações. Por favor, tente novamente.");
+      });
   }
 
   update() {
@@ -72,8 +77,26 @@ export class ProprietarioPage {
           this.navCtrl.push('HomePage');
         }
       }, (error) => {
-        console.log('Erro ao cadastrar proprietario', error);
+        this.mostrarToast("Ops! Ocorreu uma falha ao cadastrar suas informações. Por favor, tente novamente.");
       });
+  }
+
+  valida() : boolean {
+    if (this.proprietario.nome == "" || this.proprietario.sobrenome == ""
+        || this.proprietario.sexo == null || this.proprietario.idioma == null
+        || this.proprietario.dataNascimento == null) {
+          return false;
+      }
+      return true;
+  }
+
+  mostrarToast(mensagem : string) {
+    let toast = this.toastCtrl.create({
+        message: mensagem,
+        duration: 3000,
+        position: 'top'
+      });
+    toast.present();
   }
 
 }
