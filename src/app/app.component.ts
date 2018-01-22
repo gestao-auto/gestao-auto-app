@@ -3,6 +3,8 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AuthenticationProvider } from '../providers/authentication/authentication';
+import { ProprietarioProvider } from '../providers/proprietario/proprietario';
+
 
 @Component({
   templateUrl: 'app.html'
@@ -21,12 +23,14 @@ export class MyApp {
     public platform: Platform,
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
-    private authProvider: AuthenticationProvider) {
+    private authProvider: AuthenticationProvider
+  ) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'home', component: 'HomePage', icon:'home' },
+      { title: 'proprietario', component: 'ProprietarioPage', icon:'person' },
       { title: 'logout', component: 'LoginPage', icon:'log-out' }
     ];
 

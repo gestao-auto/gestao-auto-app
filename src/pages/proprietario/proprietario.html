@@ -1,0 +1,42 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Usuário</ion-title>
+    <button ion-button menuToggle>
+       <ion-icon name="menu"></ion-icon>
+    </button>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding style="background-color: white;">
+    <ion-list>
+
+      <ion-item>
+        <ion-label floating>Nome</ion-label>
+        <ion-input [(ngModel)]="proprietario.nome"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Sobrenome</ion-label>
+        <ion-input [(ngModel)]="proprietario.sobrenome"></ion-input>
+      </ion-item>
+
+       <ion-item>
+        <ion-label floating>Aniversário</ion-label>
+        <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="proprietario.dataNascimento"></ion-datetime>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Gênero</ion-label>
+        <ion-select [(ngModel)]="proprietario.sexo">
+          <ion-option value="F">Feminino</ion-option>
+          <ion-option value="M">Masculino</ion-option>
+        </ion-select>
+      </ion-item>
+
+
+    </ion-list>
+    <br><br>
+    <button ion-button block color="primary" (click)="save()">Salvar</button>
+</ion-content>

@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
 import { IonicStorageModule } from "@ionic/storage";
 import { MyApp } from './app.component';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -9,6 +10,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { AuthenticationProvider } from '../providers/authentication/authentication';
 import { AuthInterceptor } from '../interceptors/auth/auth.interceptor';
 import { UsuarioProvider } from '../providers/usuario/usuario';
+import { ProprietarioPage } from '../pages/proprietario/proprietario';
+import { ProprietarioProvider } from '../providers/proprietario/proprietario';
 
 var config={
       backButtonText: '',
@@ -37,7 +40,8 @@ var config={
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
     AuthenticationProvider,
-    UsuarioProvider
+    UsuarioProvider,
+    ProprietarioProvider
   ]
 })
 export class AppModule {}
