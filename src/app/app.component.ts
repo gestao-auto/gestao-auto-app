@@ -31,6 +31,7 @@ export class MyApp {
     this.pages = [
       { title: 'home', component: 'HomePage', icon:'home' },
       { title: 'proprietario', component: 'ProprietarioPage', icon:'person' },
+      { title: 'veiculo', component: 'VeiculoPage', icon:'car' },
       { title: 'logout', component: 'LoginPage', icon:'log-out' }
     ];
 
