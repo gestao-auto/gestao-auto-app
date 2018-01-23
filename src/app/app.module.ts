@@ -12,6 +12,7 @@ import { AuthInterceptor } from '../interceptors/auth/auth.interceptor';
 import { UsuarioProvider } from '../providers/usuario/usuario';
 import { ProprietarioPage } from '../pages/proprietario/proprietario';
 import { ProprietarioProvider } from '../providers/proprietario/proprietario';
+import { ListagemManutencaoPage } from '../pages/listagem-manutencao/listagem-manutencao';
 
 var config={
       backButtonText: '',
