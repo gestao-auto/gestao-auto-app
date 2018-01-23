@@ -5,7 +5,7 @@ export class Proprietario {
         public nome: string,
         public sobrenome: string,
         public dataNascimento: string,
-        public sexo : string) {
-
-        }
+        public sexo : string,
+        public idioma : string
+    ) {}
 }
