@@ -13,7 +13,7 @@
 
           <ion-list no-margin>
               <ion-item no-lines>
-                  <ion-input type="usuario" name="usuario" placeholder="Usuario" ngModel></ion-input>
+                  <ion-input type="text" name="usuario" placeholder="Usuario" ngModel></ion-input>
               </ion-item>
               <ion-item no-lines>
                   <ion-input type="password" name="senha" placeholder="Senha" ngModel></ion-input>
@@ -23,7 +23,7 @@
           <button class="forgot-psw" (click)="forgotPassword()" ion-button clear small>Esqueci minha senha</button>
           <button ion-button block color="primary" type="submit">Login</button>
 
-          <p [navPush]="'RegisterPage'" text-center>Novo aqui? Se cadastre!</p>
+          <p [navPush]="'RegistroPage'" text-center>Novo aqui? Se cadastre!</p>
       </div>
     </form>
 </ion-content>

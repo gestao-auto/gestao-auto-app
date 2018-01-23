@@ -20,6 +20,10 @@ export class AuthenticationProvider {
   return  this.http.post(URL_LOGIN, JSON.stringify(credenciais), { headers: this.contentHeader, responseType: 'text' as 'text' })
   }
 
+  cadastrar(usuario) {
+  return  this.http.post(URL_SIGNUP, JSON.stringify(usuario), { headers: this.contentHeader, responseType: 'text' as 'text' })
+  }
+
   logout() {
     this.storage.remove('token');
   }

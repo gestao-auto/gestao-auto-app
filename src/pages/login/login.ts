@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, MenuController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
 import { AuthenticationProvider } from '../../providers/authentication/authentication';
 import { Storage } from "@ionic/storage";
 import { ToastController } from 'ionic-angular';
@@ -15,7 +15,6 @@ export class LoginPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public alertCtrl: AlertController,
     public menuCtrl: MenuController,
     private authProvider: AuthenticationProvider,
     private storage: Storage,
