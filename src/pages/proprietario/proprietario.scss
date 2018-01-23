@@ -1,9 +1,10 @@
 page-proprietario {
-
-  ion-navbar {
-      .toolbar-background-md{
-          background: color($colors,secondary);
-      }
-  }
-
+    ion-navbar {
+        .toolbar-background-md{
+            background: color($colors,secondary);
+        }
+    }
+    ion-content{
+        background-color: color($colors, light);
+    }
 }
