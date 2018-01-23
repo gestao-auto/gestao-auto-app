@@ -22,25 +22,25 @@ export class ProprietarioProvider {
       });
     }
 
-    create(proprietario) {
-      return new Promise((resolve, reject) => {
-        this.http.post(URL, JSON.stringify(proprietario), {headers: this.contentHeader})
-          .subscribe(data => {
-            resolve(data);
-          }, error => {
-            reject(error);
-          });
+  create(proprietario) {
+    return new Promise((resolve, reject) => {
+      this.http.post(URL, JSON.stringify(proprietario), {headers: this.contentHeader})
+        .subscribe(data => {
+          resolve(data);
+        }, error => {
+          reject(error);
         });
-    }
+      });
+  }
 
-    update(proprietario) {
-      return new Promise((resolve, reject) => {
-        this.http.put(URL, JSON.stringify(proprietario), {headers: this.contentHeader})
-          .subscribe(data => {
-            resolve(data);
-          }, error => {
-            reject(error);
-          });
+  update(proprietario) {
+    return new Promise((resolve, reject) => {
+      this.http.put(URL, JSON.stringify(proprietario), {headers: this.contentHeader})
+        .subscribe(data => {
+          resolve(data);
+        }, error => {
+          reject(error);
         });
-    }
+      });
+  }
 }

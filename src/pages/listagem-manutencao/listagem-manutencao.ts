@@ -4,6 +4,8 @@ import { Storage } from "@ionic/storage";
 import { HttpErrorResponse } from '@angular/common/http';
 import { JwtHelper } from "angular2-jwt";
 import { ToastController } from 'ionic-angular';
+import { ManutencaoProvider } from '../../providers/manutencao/manutencao';
+import { Manutencao } from '../../model/manutencao';
 
 /**
  * Generated class for the ListagemManutencaoPage page.
@@ -19,14 +21,17 @@ import { ToastController } from 'ionic-angular';
 })
 export class ListagemManutencaoPage {
   codigoUsuario : number;
+  codigoVeiculo : number;
   jwtHelper = new JwtHelper();
+  manutencoes = Array<any>();
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public storage : Storage,
     public view : ViewController,
-    private toastCtrl: ToastController) {
+    private toastCtrl: ToastController,
+    private manutencaoProvider: ManutencaoProvider) {
 
     this.codigoUsuario = null;
 
@@ -42,13 +47,23 @@ export class ListagemManutencaoPage {
   }
 
   get() {
-  //   this.propProvider.get(this.codigoUsuario)
-  //     .then((proprietario: Proprietario) => {
-  //         if (proprietario != null) {
-  //           this.proprietario = proprietario;
-  //         }
-  //       }, (error) => {
-  //         this.mostrarToast("Ops! Não conseguimos recuperar suas informações. Por favor, tente novamente.");
-  //       })
+    this.manutencaoProvider.get(this.codigoVeiculo)
+      .then((manutencoes: Array<any>) => {
+        console.log("ManutencaoPage -> get -> manutencoes: " + manutencoes.toString());
+        if (manutencoes != null) {
+          this.manutencoes = manutencoes;
+        }
+      }, (error) => {
+        this.mostrarToast("Ops! Não conseguimos recuperar suas informações. Por favor, tente novamente.");
+      })
+  }
+
+  mostrarToast(mensagem : string) {
+    let toast = this.toastCtrl.create({
+        message: mensagem,
+        duration: 3000,
+        position: 'top'
+      });
+    toast.present();
   }
 }

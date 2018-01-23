@@ -13,6 +13,7 @@ import { UsuarioProvider } from '../providers/usuario/usuario';
 import { ProprietarioPage } from '../pages/proprietario/proprietario';
 import { ProprietarioProvider } from '../providers/proprietario/proprietario';
 import { ListagemManutencaoPage } from '../pages/listagem-manutencao/listagem-manutencao';
+import { ManutencaoProvider } from '../providers/manutencao/manutencao';
 
 var config={
       backButtonText: '',
@@ -42,7 +43,8 @@ var config={
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
     AuthenticationProvider,
     UsuarioProvider,
-    ProprietarioProvider
+    ProprietarioProvider,
+    ManutencaoProvider
   ]
 })
 export class AppModule {}

@@ -4,6 +4,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AuthenticationProvider } from '../providers/authentication/authentication';
 import { ProprietarioProvider } from '../providers/proprietario/proprietario';
+import { ManutencaoProvider } from '../providers/manutencao/manutencao';
 
 
 @Component({
