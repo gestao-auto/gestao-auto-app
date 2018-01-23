@@ -1,0 +1,13 @@
+page-registro {
+  .header-md{
+       &:after{
+           background-image: none;
+       }
+       .toolbar-background-md{
+           background: color($colors,secondary);
+       }
+  }
+   .scroll-content{
+       padding-bottom: 0 !important;
+   }
+}

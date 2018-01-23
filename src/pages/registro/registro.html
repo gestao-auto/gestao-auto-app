@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-navbar></ion-navbar>
+</ion-header>
+
+<ion-content class="main_bg" padding>
+
+    <div  class="app_form" margin-top>
+        <h3 text-uppercase>Cadastre-se</h3>
+
+        <ion-list>
+            <ion-item no-lines>
+                <ion-input type="text" [(ngModel)]="usuario.email" placeholder="Email"></ion-input>
+            </ion-item>
+            <ion-item no-lines>
+                <ion-input type="password" [(ngModel)]="usuario.senha" placeholder="Senha"></ion-input>
+            </ion-item>
+            <ion-item no-lines>
+                <ion-input type="password" [(ngModel)]="confirmarSenha" placeholder="Confirmar Senha"></ion-input>
+            </ion-item>
+        </ion-list>
+
+        <button ion-button block color="primary" (click)="cadastrar()" >Cadastrar</button>
+    </div>
+
+</ion-content>
