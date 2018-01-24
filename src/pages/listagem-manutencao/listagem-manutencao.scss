@@ -7,8 +7,8 @@ page-listagem-manutencao {
     ion-content{
         background-color: color($colors, light);
     }
-    ion-row{
-        margin-bottom: 5px;
+    button{
+        background-color: color($colors, primary);
     }
     .principal{
         font-size: 1.1em;

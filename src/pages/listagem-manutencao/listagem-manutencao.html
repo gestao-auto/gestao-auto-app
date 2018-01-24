@@ -1,9 +1,3 @@
-<!--
-  Generated template for the ListagemManutencaoPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar >
@@ -17,16 +11,15 @@
 
 <ion-content>
   <ion-grid>
-    <ion-row class="item item-md" *ngFor="let m of listaTeste;">
+    <ion-row class="item item-md" *ngFor="let m of manutencoes;">
       <ion-col>
-        <ion-label class="principal">{{m.tipo}}</ion-label>
-        <ion-label>{{m.km}} KM</ion-label>
-        <ion-label>{{m.anos}} anos</ion-label>
+        <ion-label class="principal">{{m.tipoManutencao}}</ion-label>
+        <ion-label>{{m.odometroPrevisto}} KM</ion-label>
       </ion-col>
       <ion-col>
         <ion-label>
           <ion-icon name="checkmark"></ion-icon>
-          &nbsp;{{m.realizada}}
+          &nbsp;{{m.status}}
         </ion-label>
         <ion-label>
           <ion-icon name="calendar"></ion-icon>
@@ -46,37 +39,36 @@
     </ion-row>
   </ion-grid>
   <ion-card>
-    <ion-row>
+    <ion-row *ngFor="let m of manutencoes;">
       <ion-col>
-        <ion-label class="principal">Revisão</ion-label>
-        <ion-label>80.000 KM</ion-label>
-        <ion-label>8 anos</ion-label>
+        <ion-label class="principal">{{m.tipoManutencao}}</ion-label>
+        <ion-label>{{m.odometroPrevisto}} KM</ion-label>
       </ion-col>
       <ion-col>
         <ion-label>
           <ion-icon name="checkmark"></ion-icon>
-          &nbsp;Realizada
+          &nbsp;{{m.status}}
         </ion-label>
         <ion-label>
           <ion-icon name="calendar"></ion-icon>
-          &nbsp;10/01/2017
+          &nbsp;{{m.data}}
         </ion-label>
       </ion-col>
-      <ion-col>
-        <ion-label>
+      <ion-col *ngIf="m.status != 'Realizada'">
+        <ion-label *ngIf="m.status != 'Realizada'">
           <ion-icon name="pin"></ion-icon>
-          &nbsp;Metronorte
+          &nbsp;{{m.oficina}}
         </ion-label>
         <ion-label>
           <ion-icon name="cash"></ion-icon>
-          &nbsp;R$1.000,00
+          &nbsp;R${{m.valor}}
         </ion-label>
       </ion-col>
     </ion-row>
   </ion-card>
 
   <ion-fab right bottom >
-    <button ion-fab color="light">
+    <button ion-fab>
       <ion-icon name="add"></ion-icon>
     </button>
   </ion-fab>
