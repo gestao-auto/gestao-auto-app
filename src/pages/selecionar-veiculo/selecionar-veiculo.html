@@ -1,0 +1,20 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Selecione o Ve\u00EDculo</ion-title>
+    <ion-buttons end>
+      <button ion-button solid color="primary" (click)="fecharModal()">
+        Fechar
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  {{veiculoAtual.nome}}
+  <button ion-button solid color="light" (click)="selecionar()">
+    Selecionar
+  </button>
+</ion-content>
