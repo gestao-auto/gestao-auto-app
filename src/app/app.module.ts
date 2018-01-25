@@ -14,6 +14,7 @@ import { ProprietarioPage } from '../pages/proprietario/proprietario';
 import { ProprietarioProvider } from '../providers/proprietario/proprietario';
 import { ListagemManutencaoPage } from '../pages/listagem-manutencao/listagem-manutencao';
 import { ManutencaoProvider } from '../providers/manutencao/manutencao';
+import { PreferenciasProvider } from '../providers/preferencias/preferencias';
 import { VeiculoProvider } from '../providers/veiculo/veiculo';
 
 var config={
@@ -46,6 +47,7 @@ var config={
     UsuarioProvider,
     ProprietarioProvider,
     ManutencaoProvider,
+    PreferenciasProvider,
     VeiculoProvider
   ]
 })

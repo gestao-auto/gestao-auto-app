@@ -1,10 +1,10 @@
 <ion-menu [content]="content">
   <ion-header>
 
-    <ion-navbar  color="light">
+    <ion-navbar  color="primary">
       <ion-buttons start style="order:1">
         <button menuClose ion-button>
-          <ion-icon color="primary" name="close"></ion-icon>
+          <ion-icon color="light" name="close"></ion-icon>
         </button>
       </ion-buttons>
       <ion-title>{{headerTitle}}</ion-title>
@@ -14,10 +14,8 @@
 
   <ion-content>
     <ion-list>
-      <button ion-item menuClose *ngFor="let p of pages; let i = index" (click)="openPage(p);activeItem(i)"
-          [ngClass]="{'active_item':itemindex==i}" text-center>
-        <ion-icon name="{{p.icon}}"></ion-icon>
-        {{p.title}}
+      <button ion-item menuClose *ngFor="let p of pages; let i = index" (click)="openPage(p);activeItem(i)"[ngClass]="{'active_item':itemindex==i}" >
+        <ion-icon name="{{p.icon}}">&nbsp;&nbsp;</ion-icon>{{p.title}}
       </button>
     </ion-list>
   </ion-content>

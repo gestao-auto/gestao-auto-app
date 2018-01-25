@@ -24,7 +24,6 @@ export class ListagemManutencaoPage {
   codigoVeiculo : number;
   jwtHelper = new JwtHelper();
   manutencoes = Array<any>();
-  listaTeste = Array<any>();
 
   constructor(
     public navCtrl: NavController,
@@ -34,12 +33,8 @@ export class ListagemManutencaoPage {
     private toastCtrl: ToastController,
     private manutencaoProvider: ManutencaoProvider) {
 
-      this.listaTeste = [
-        { tipo: 'Revisão', km: '100.000', anos:'10', realizada:'Realizada', data:'10/12/2017', oficina:'metronorte', valor:'3.000,00' },
-        { tipo: 'Manutenção', km: '90.000', anos:'9', realizada:'Realizada', data:'10/06/2017', oficina:'Andrade', valor:'600,00' }
-      ];
-
     this.codigoUsuario = null;
+    this.codigoVeiculo = 1;
 
     this.storage.get('token').then(
       token => {
@@ -53,7 +48,7 @@ export class ListagemManutencaoPage {
   }
 
   get() {
-    this.manutencaoProvider.get(this.codigoVeiculo)
+    this.manutencaoProvider.getByVehicle(this.codigoVeiculo)
       .then((manutencoes: Array<any>) => {
         console.log("ManutencaoPage -> get -> manutencoes: " + manutencoes.toString());
         if (manutencoes != null) {
