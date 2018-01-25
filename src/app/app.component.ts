@@ -34,8 +34,8 @@ export class MyApp {
       { title: 'Usuário', component: 'ProprietarioPage', icon:'person' },
       { title: 'Veículo', component: 'VeiculoPage', icon:'car' },
       { title: 'Manuten\u00E7\u00F5es', component: 'ListagemManutencaoPage', icon:'construct' },
-      { title: 'Notificações', component: 'PreferenciasPage', icon:'ios-alarm' },
-      { title: 'Logout', component: 'LoginPage', icon:'log-out' }
+      { title: 'Preferências de notificação', component: 'PreferenciasPage', icon:'ios-alarm' },
+      { title: 'Sair', component: 'LoginPage', icon:'log-out' }
     ];
 
   }
@@ -49,7 +49,7 @@ export class MyApp {
     });
   }
   openPage(page) {
-  if (page.title == 'logout'){
+  if (page.title == 'Sair'){
     this.authProvider.logout();
   }
   this.nav.setRoot(page.component);
