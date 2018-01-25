@@ -1,3 +1,32 @@
 page-veiculo {
+    .header-md{
+      &:after{
+          background-image: none;
+      }
+      ion-navbar{
+          .toolbar-background-md{
+              background: color($colors,secondary);
+          }
+      }
+      [menuToggle]{
+          display: block !important;
+      }
+    }
 
+    .scroll-content{
+        margin-top: 50px !important;
+        .home_header{
+          height: 180px;
+          img{
+              height: 100%;
+              width: 100%;
+              object-fit: cover;
+              object-position: bottom;
+          }
+        }
+    }
+    .principal{
+        font-size: 1.1em;
+        font-weight: bold
+    }
 }

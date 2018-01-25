@@ -9,11 +9,6 @@ page-home {
             background: color($colors,secondary);
         }
     }
-    .search_bar{
-        .toolbar-background-md{
-            background: none;
-        }
-    }
     [menuToggle]{
         display: block !important;
     }
@@ -31,23 +26,4 @@ page-home {
         }
       }
   }
-}
-
-
-//car options
-.car-options{
-    margin: 0 -4px;
-    ion-col{
-        padding: 13px 10px;
-        background: color($colors,light);
-        color: lighten(color($colors,primary), 20%);
-        border: 1px solid lighten(color($colors,primary), 35%);
-        font-weight: bold;
-        margin-right: -1px;
-        ion-icon{
-            display: block;
-            font-size: 3.5rem;
-            margin-bottom: 5px;
-        }
-    }
 }

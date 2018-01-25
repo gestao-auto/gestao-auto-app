@@ -14,6 +14,7 @@ import { ProprietarioPage } from '../pages/proprietario/proprietario';
 import { ProprietarioProvider } from '../providers/proprietario/proprietario';
 import { ListagemManutencaoPage } from '../pages/listagem-manutencao/listagem-manutencao';
 import { ManutencaoProvider } from '../providers/manutencao/manutencao';
+import { VeiculoProvider } from '../providers/veiculo/veiculo';
 
 var config={
       backButtonText: '',
@@ -44,7 +45,8 @@ var config={
     AuthenticationProvider,
     UsuarioProvider,
     ProprietarioProvider,
-    ManutencaoProvider
+    ManutencaoProvider,
+    VeiculoProvider
   ]
 })
 export class AppModule {}
