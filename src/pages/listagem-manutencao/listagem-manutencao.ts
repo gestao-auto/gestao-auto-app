@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { ViewController, ToastController } from 'ionic-angular';
+import { Modal, ModalController } from 'ionic-angular';
 import { Storage } from "@ionic/storage";
 import { HttpErrorResponse } from '@angular/common/http';
 import { JwtHelper } from "angular2-jwt";
-import { ToastController } from 'ionic-angular';
 import { ManutencaoProvider } from '../../providers/manutencao/manutencao';
 import { Manutencao } from '../../model/manutencao';
 
@@ -21,7 +22,8 @@ import { Manutencao } from '../../model/manutencao';
 })
 export class ListagemManutencaoPage {
   codigoUsuario : number;
-  codigoVeiculo : number;
+  veiculoSelecionado : any;
+  veiculos = Array<any>();
   jwtHelper = new JwtHelper();
   manutencoes = Array<any>();
 
@@ -31,10 +33,12 @@ export class ListagemManutencaoPage {
     public storage : Storage,
     public view : ViewController,
     private toastCtrl: ToastController,
-    private manutencaoProvider: ManutencaoProvider) {
+    private manutencaoProvider: ManutencaoProvider,
+    public modalCtrl: ModalController) {
 
     this.codigoUsuario = null;
-    this.codigoVeiculo = 1;
+    this.veiculoSelecionado = {'codigo': 1, 'nome': 'Cobalt'};
+    this.veiculos = [{'codigo': 1, 'nome': 'Cobalt'},{'codigo': 2, 'nome': 'Logan'}];
 
     this.storage.get('token').then(
       token => {
@@ -48,7 +52,7 @@ export class ListagemManutencaoPage {
   }
 
   get() {
-    this.manutencaoProvider.getByVehicle(this.codigoVeiculo)
+    this.manutencaoProvider.getByVehicle(this.veiculoSelecionado.codigo)
       .then((manutencoes: Array<any>) => {
         console.log("ManutencaoPage -> get -> manutencoes: " + manutencoes.toString());
         if (manutencoes != null) {
@@ -57,6 +61,19 @@ export class ListagemManutencaoPage {
       }, (error) => {
         this.mostrarToast("Ops! Não conseguimos recuperar suas informações. Por favor, tente novamente.");
       })
+  }
+
+  selecionarVeiculo(){
+    console.log('MODAL SELECIONAR - ' + this.veiculoSelecionado);
+    let modal: Modal = this.modalCtrl.create('SelecionarVeiculoPage', {'veiculoAtual': this.veiculoSelecionado});
+    modal.present();
+    modal.onWillDismiss((data) => {
+      this.veiculoSelecionado = (data == undefined) ? this.veiculoSelecionado : data;
+    });
+  }
+
+  addManutencao(){
+    this.navCtrl.push('CadastrarManutencaoPage');
   }
 
   mostrarToast(mensagem : string) {

@@ -7,6 +7,9 @@ page-listagem-manutencao {
     ion-content{
         background-color: color($colors, light);
     }
+    ion-select{
+        color: color($colors, light);
+    }
     button{
         background-color: color($colors, primary);
     }

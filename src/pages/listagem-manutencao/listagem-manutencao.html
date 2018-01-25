@@ -1,12 +1,18 @@
 <ion-header>
 
   <ion-navbar >
-    <ion-title>Manuten\u00E7\u00F5es</ion-title>
     <button ion-button menuToggle>
-       <ion-icon name="menu"></ion-icon>
+     <ion-icon name="menu"></ion-icon>
     </button>
-  </ion-navbar>
 
+    <ion-title>Manuten\u00E7\u00F5es</ion-title>
+
+    <ion-buttons end>
+      <button ion-button solid color="light" (click)="selecionarVeiculo()">
+        {{veiculoSelecionado.nome}}
+      </button>
+    </ion-buttons>
+  </ion-navbar>
 </ion-header>
 
 <ion-content>
@@ -68,7 +74,7 @@
   </ion-card>
 
   <ion-fab right bottom >
-    <button ion-fab>
+    <button ion-fab (click)="addManutencao()">
       <ion-icon name="add"></ion-icon>
     </button>
   </ion-fab>
