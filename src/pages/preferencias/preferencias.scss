@@ -1,0 +1,12 @@
+page-preferencias {
+    ion-navbar {
+        .toolbar-background-md{
+            background: color($colors,secondary);
+        }
+    }
+    .list-header-md{
+      color: black;
+      border: 0px;
+      margin-bottom: 0px;
+    }
+}

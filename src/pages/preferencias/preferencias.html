@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-navbar >
+    <ion-title>Preferências de notificação</ion-title>
+    <button ion-button menuToggle>
+       <ion-icon name="menu"></ion-icon>
+    </button>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-list style="background-color: white; margin: 0px 0px;">
+    <ion-list-header>Melhor horário</ion-list-header>
+    <ion-item>
+      <ion-datetime displayFormat="HH:mm" [(ngModel)]="preferencias.horarioNotificacao"></ion-datetime>
+    </ion-item>
+  </ion-list>
+
+  <br>
+
+  <ion-list style="background-color: white; margin: 0px 0px;">
+    <ion-list-header>
+      Antecedência por tempo de uso
+      <ion-badge item-end color="primary">{{preferencias.diasAntecedenciaNotificacaoRevisao}}</ion-badge>
+    </ion-list-header>
+    <ion-item>
+      <ion-range min="10" max="90" pin="true" [(ngModel)]="preferencias.diasAntecedenciaNotificacaoRevisao" color="secondary">
+        <ion-label range-left>10 dias</ion-label>
+        <ion-label range-right>90 dias</ion-label>
+      </ion-range>
+    </ion-item>
+  </ion-list>
+
+  <br>
+
+  <ion-list style="background-color: white; margin: 0px 0px;">
+    <ion-list-header>
+      Antecedência por quilometragem
+      <ion-badge item-end color="primary">{{preferencias.hodometroAntecedenciaNotificacaoRevisao}}</ion-badge>
+    </ion-list-header>
+    <ion-item>
+      <ion-range min="100" max="1000" step="50" pin="true" [(ngModel)]="preferencias.hodometroAntecedenciaNotificacaoRevisao" color="secondary">
+        <ion-label range-left>100 km</ion-label>
+        <ion-label range-right>1000 km</ion-label>
+      </ion-range>
+    </ion-item>
+  </ion-list>
+
+  <br><br>
+
+  <button ion-button block color="primary" (click)="submit()">Salvar</button>
+
+</ion-content>

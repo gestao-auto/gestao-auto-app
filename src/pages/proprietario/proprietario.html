@@ -1,7 +1,7 @@
 <ion-header>
 
   <ion-navbar >
-    <ion-title>Proprietario</ion-title>
+    <ion-title>Usuário</ion-title>
     <button ion-button menuToggle *ngIf="proprietario.codigo != undefined">
        <ion-icon name="menu"></ion-icon>
     </button>
@@ -9,7 +9,7 @@
 
 </ion-header>
 
-<ion-content padding>
+<ion-content padding style="background-color: white;">
     <ion-list>
 
       <ion-item>
@@ -28,7 +28,7 @@
       </ion-item>
 
       <ion-item>
-        <ion-label>Gênero</ion-label>
+        <ion-label floating >Gênero</ion-label>
         <ion-select [(ngModel)]="proprietario.sexo">
           <ion-option value="F">Feminino</ion-option>
           <ion-option value="M">Masculino</ion-option>
@@ -36,7 +36,7 @@
       </ion-item>
 
       <ion-item>
-        <ion-label>Idioma</ion-label>
+        <ion-label floating>Idioma</ion-label>
         <ion-select [(ngModel)]="proprietario.idioma">
           <ion-option value="pt_BR">Português</ion-option>
           <ion-option value="en_US">Inglês</ion-option>

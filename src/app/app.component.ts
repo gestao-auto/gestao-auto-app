@@ -31,9 +31,10 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', component: 'HomePage', icon:'home' },
-      { title: 'Proprietario', component: 'ProprietarioPage', icon:'person' },
-      { title: 'Veiculo', component: 'VeiculoPage', icon:'car' },
+      { title: 'Usuário', component: 'ProprietarioPage', icon:'person' },
+      { title: 'Veículo', component: 'VeiculoPage', icon:'car' },
       { title: 'Manuten\u00E7\u00F5es', component: 'ListagemManutencaoPage', icon:'construct' },
+      { title: 'Notificações', component: 'PreferenciasPage', icon:'ios-alarm' },
       { title: 'Logout', component: 'LoginPage', icon:'log-out' }
     ];
 
@@ -48,7 +49,7 @@ export class MyApp {
     });
   }
   openPage(page) {
-  if(page.title == 'logout'){
+  if (page.title == 'logout'){
     this.authProvider.logout();
   }
   this.nav.setRoot(page.component);
