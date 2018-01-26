@@ -44,8 +44,8 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-  <ion-card>
-    <ion-row *ngFor="let m of manutencoes;">
+  <ion-card *ngFor="let m of manutencoes;" (click)="onClick(m.codigo)">
+    <ion-row>
       <ion-col>
         <ion-label class="principal">{{m.tipoManutencao}}</ion-label>
         <ion-label>{{m.odometroPrevisto}} KM</ion-label>
