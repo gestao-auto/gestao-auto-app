@@ -15,10 +15,12 @@ import { IonicPage, ViewController, NavParams } from 'ionic-angular';
 })
 export class SelecionarVeiculoPage {
   veiculoAtual: any;
+  veiculos = Array<any>();
 
   constructor(private viewCtrl: ViewController, private navParams: NavParams) {
     console.log('SelecionarVeiculoPage - ' + this.navParams.get('veiculoAtual'));
     this.veiculoAtual = this.navParams.get('veiculoAtual');
+    this.veiculos = [{'codigo': 1, 'nome': 'Cobalt'},{'codigo': 2, 'nome': 'Logan'}];
   }
 
   ionViewDidLoad() {
@@ -29,7 +31,7 @@ export class SelecionarVeiculoPage {
     this.viewCtrl.dismiss();
   }
 
-  selecionar(){
-    this.viewCtrl.dismiss(this.veiculoAtual);
+  selecionar(veiculo){
+    this.viewCtrl.dismiss(veiculo);
   }
 }
