@@ -27,13 +27,13 @@ export class ListagemManutencaoPage {
   manutencoes = Array<any>();
 
   constructor(
-    public navCtrl: NavController,
-    public navParams: NavParams,
-    public storage : Storage,
-    public view : ViewController,
+    private navCtrl: NavController,
+    private navParams: NavParams,
+    private storage : Storage,
+    private view : ViewController,
     private toastCtrl: ToastController,
     private manutencaoProvider: ManutencaoProvider,
-    public modalCtrl: ModalController) {
+    private modalCtrl: ModalController) {
 
     this.codigoUsuario = null;
     this.veiculoSelecionado = {'codigo': 0, 'nome': 'Sem veiculo'};
