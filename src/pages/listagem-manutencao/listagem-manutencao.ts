@@ -23,23 +23,27 @@ import { Manutencao } from '../../model/manutencao';
 export class ListagemManutencaoPage {
   codigoUsuario : number;
   veiculoSelecionado : any;
-  veiculos = Array<any>();
   jwtHelper = new JwtHelper();
   manutencoes = Array<any>();
 
   constructor(
-    public navCtrl: NavController,
-    public navParams: NavParams,
-    public storage : Storage,
-    public view : ViewController,
+    private navCtrl: NavController,
+    private navParams: NavParams,
+    private storage : Storage,
+    private view : ViewController,
     private toastCtrl: ToastController,
     private manutencaoProvider: ManutencaoProvider,
-    public modalCtrl: ModalController) {
+    private modalCtrl: ModalController) {
 
     this.codigoUsuario = null;
-    this.veiculoSelecionado = {'codigo': 1, 'nome': 'Cobalt'};
-    this.veiculos = [{'codigo': 1, 'nome': 'Cobalt'},{'codigo': 2, 'nome': 'Logan'}];
+    this.veiculoSelecionado = {'codigo': 0, 'nome': 'Sem veiculo'};
 
+    this.storage.get('veiculo').then(
+      veiculo => {
+        this.veiculoSelecionado = (veiculo == null) 
+          ? this.veiculoSelecionado
+          : JSON.parse(veiculo);
+      });
     this.storage.get('token').then(
       token => {
         this.codigoUsuario = this.jwtHelper.decodeToken(token).sub;
@@ -69,6 +73,7 @@ export class ListagemManutencaoPage {
     modal.present();
     modal.onWillDismiss((data) => {
       this.veiculoSelecionado = (data == undefined) ? this.veiculoSelecionado : data;
+      this.get();
     });
   }
 
@@ -83,5 +88,9 @@ export class ListagemManutencaoPage {
         position: 'top'
       });
     toast.present();
+  }
+
+  onClick(type){
+    console.log("TIPO - " + type);
   }
 }
