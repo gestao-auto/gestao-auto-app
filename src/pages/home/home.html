@@ -4,16 +4,66 @@
     <button ion-button menuToggle>
        <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>home</ion-title>
+    <ion-title>Gestão Auto</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content>
+<ion-content padding>
+  <ion-card>
+    <ion-list>
+      <!--  Título -->
+      <ion-item>
+        <ion-icon name="construct" item-left></ion-icon>
+        <ion-label class="title">Manutenção<br>Programada</ion-label>
+        <ion-icon name="md-create" item-right class="icon-edit"></ion-icon>
+      </ion-item>
 
-   <div class="home_header">
-     <img src="assets/img/home_header.png">
-   </div>
+      <ion-item color="none">
+        <ion-grid>
+        <!-- Linha 1 -->
+        <ion-row>
+          <ion-col>
+            <div class="principal">REV 1</div>
+          </ion-col>
+          <ion-col>
+            <div class="secundario">
+              <ion-icon name="alarm"></ion-icon>
+              45 dias
+            </div>
+          </ion-col>
+          <ion-col>
+            <div class="secundario">
+              <ion-icon name="warning"></ion-icon>
+                Pendente
+              </div>
+          </ion-col>
+        </ion-row>
+      <!-- Linha 2 -->
+        <ion-row>
+          <ion-col>
+            <div class="info-revisao">
+              5000 km<br>ou 1 ano
+            </div>
+          </ion-col>
+          <ion-col>
+            <div class="secundario">
+              <ion-icon name="speedometer"></ion-icon>
+              400 km
+            </div>
+          </ion-col>
+          <ion-col>
+            <div class="secundario">
+              <ion-icon name="cash"></ion-icon>
+              736,00
+            </div>
+          </ion-col>
+        </ion-row>
 
+        </ion-grid>
+      </ion-item>
+
+    </ion-list>
+  </ion-card>
 </ion-content>

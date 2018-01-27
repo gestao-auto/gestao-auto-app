@@ -26,4 +26,35 @@ page-home {
         }
       }
   }
+  .title {
+      font-size: 0.85em;
+      color: color($colors, primary);
+  }
+  .principal {
+      font-size: 1.0em;
+      font-weight: bold;
+      color: color($colors, primary);
+  }
+
+  .info-revisao {
+    color: color($colors, primary);
+    font-size: 0.65em;
+  }
+  .secundario {
+    color: color($colors, primary);
+    font-size: 0.8em;
+  }
+
+  .icon-edit {
+    font-size: 2.0rem;
+    color: #bfbaba;
+  }
+
+  .grid {
+    padding: 0px;
+
+  }
+  .col {
+    padding : 2.5px;
+  }
 }
