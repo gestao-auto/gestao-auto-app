@@ -5,6 +5,14 @@
        <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>Gestão Auto</ion-title>
+
+    <!-- Seleção de veículo -->
+    <ion-buttons end>
+      <button ion-button solid color="light" (click)="selecionarVeiculo()">
+        {{veiculoSelecionado.nome}}
+      </button>
+    </ion-buttons>
+
   </ion-navbar>
 
 </ion-header>
@@ -25,32 +33,44 @@
         <!-- Linha 1 -->
         <ion-row>
           <ion-col>
-            <div class="principal">REV 1</div>
+            <div class="principal">{{manutencao.descricao}}</div>
           </ion-col>
           <ion-col>
-            <div class="secundario">
+            <div class="secundario" *ngIf="manutencao.diasRestantes > 0">
               <ion-icon name="alarm"></ion-icon>
-              45 dias
+              {{manutencao.diasRestantes}} dias
+            </div>
+            <div class="secundario atrasado" *ngIf="manutencao.diasRestantes < 0">
+              <ion-icon name="alarm"></ion-icon>
+              Há {{manutencao.diasRestantes *(-1)}} dias
             </div>
           </ion-col>
           <ion-col>
-            <div class="secundario">
+            <div class="secundario"  *ngIf="manutencao.diasRestantes > 0 && manutencao.quilometrosRestantes > 0">
               <ion-icon name="warning"></ion-icon>
-                Pendente
-              </div>
+              {{manutencao.status}}
+            </div>
+            <div class="secundario atrasado" *ngIf="manutencao.diasRestantes < 0 || manutencao.quilometrosRestantes < 0">
+              <ion-icon name="warning"></ion-icon>
+              {{manutencao.status}}
+            </div>
           </ion-col>
         </ion-row>
       <!-- Linha 2 -->
         <ion-row>
           <ion-col>
             <div class="info-revisao">
-              5000 km<br>ou 1 ano
+              {{manutencao.quilometragemPrevista}} km <br>{{manutencao.tempoUsoPrevisto}} meses
             </div>
           </ion-col>
           <ion-col>
-            <div class="secundario">
+            <div class="secundario"  *ngIf="manutencao.quilometrosRestantes > 0">
               <ion-icon name="speedometer"></ion-icon>
-              400 km
+              {{manutencao.quilometrosRestantes}} km
+            </div>
+            <div class="secundario atrasado" *ngIf="manutencao.quilometrosRestantes < 0">
+              <ion-icon name="speedometer" atrasado></ion-icon>
+              Há {{manutencao.quilometrosRestantes * (-1)}} km
             </div>
           </ion-col>
           <ion-col>
