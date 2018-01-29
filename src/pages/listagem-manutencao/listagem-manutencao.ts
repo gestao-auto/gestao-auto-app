@@ -49,7 +49,7 @@ export class ListagemManutencaoPage {
         }
       }, (error) => {
         this.mostrarToast("Ops! Não conseguimos recuperar suas informações. Por favor, tente novamente.");
-      })
+      });
   }
 
   selecionarVeiculo(){
@@ -75,7 +75,8 @@ export class ListagemManutencaoPage {
     toast.present();
   }
 
-  onClick(type){
-    console.log("TIPO - " + type);
+  acessarManutencao(codigoManutencao){
+    console.log("Manutencao - " + codigoManutencao);
+    this.navCtrl.push('CadastrarManutencaoPage', {'codigoManutencao' : codigoManutencao});
   }
 }
