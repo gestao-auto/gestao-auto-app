@@ -8,20 +8,12 @@ import { JwtHelper } from "angular2-jwt";
 import { ManutencaoProvider } from '../../providers/manutencao/manutencao';
 import { Manutencao } from '../../model/manutencao';
 
-/**
- * Generated class for the ListagemManutencaoPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-listagem-manutencao',
   templateUrl: 'listagem-manutencao.html',
 })
 export class ListagemManutencaoPage {
-  codigoUsuario : number;
   veiculoSelecionado : any;
   jwtHelper = new JwtHelper();
   manutencoes = Array<any>();
@@ -35,20 +27,13 @@ export class ListagemManutencaoPage {
     private manutencaoProvider: ManutencaoProvider,
     private modalCtrl: ModalController) {
 
-    this.codigoUsuario = null;
     this.veiculoSelecionado = {'codigo': 0, 'nome': 'Sem veiculo'};
 
     this.storage.get('veiculo').then(
       veiculo => {
-        this.veiculoSelecionado = (veiculo == null) 
-          ? this.veiculoSelecionado
-          : JSON.parse(veiculo);
-      });
-    this.storage.get('token').then(
-      token => {
-        this.codigoUsuario = this.jwtHelper.decodeToken(token).sub;
+        this.veiculoSelecionado = (veiculo == null) ? this.veiculoSelecionado : veiculo;
         this.get();
-      });
+    });
   }
 
   ionViewDidLoad() {

@@ -10,9 +10,9 @@ export class VeiculoProvider {
   constructor(public http: HttpClient) {
   }
 
-  get() {
+  get(usuario : number) {
     return new Promise((resolve, reject) => {
-      this.http.get(URL + 'porUsuario/1')
+      this.http.get(URL + 'porUsuario/' + usuario.toString())
         .subscribe(data => {
           resolve(data);
         }, error => {
