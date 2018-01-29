@@ -39,7 +39,7 @@ export class HomePage {
       // Recupera o veículo selecionado
       this.storage.get('veiculo').then(
          veiculo => {
-           if (veiculo.codigo != undefined) {
+           if (veiculo != null) {
              this.veiculoSelecionado = veiculo;
              this.get();
            } else {
@@ -71,9 +71,11 @@ export class HomePage {
   get() {
     this.homeProvider.getManutencao(this.veiculoSelecionado.codigo)
       .then((manutencao: HomeManutencao) => {
-        console.log(manutencao);
+          console.log(manutencao);
           if (manutencao != null) {
             this.manutencao = manutencao;
+          } else {
+            this.manutencao = new HomeManutencao(null, null, null, null, null, null, null, null, null);
           }
         }, (error) => {
           this.mostrarToast("Ops! Não conseguimos recuperar suas informações. Por favor, tente novamente.");
