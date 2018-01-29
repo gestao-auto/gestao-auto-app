@@ -53,8 +53,9 @@ export class SelecionarVeiculoPage {
     this.viewCtrl.dismiss();
   }
 
-  selecionar(veiculo){
-    this.storage.set("veiculo", JSON.stringify(veiculo));
+  selecionar(veiculo) {
+    //this.storage.set("veiculo", JSON.stringify(veiculo));
+    this.storage.set("veiculo", {'codigo': veiculo.codigo, 'nome': veiculo.nome});
     this.viewCtrl.dismiss(veiculo);
   }
 
