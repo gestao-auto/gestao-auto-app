@@ -17,6 +17,8 @@ import { ManutencaoProvider } from '../providers/manutencao/manutencao';
 import { PreferenciasProvider } from '../providers/preferencias/preferencias';
 import { VeiculoProvider } from '../providers/veiculo/veiculo';
 import { HomeProvider } from '../providers/home/home';
+import { ChartsModule } from 'ng2-charts/ng2-charts';
+
 
 var config={
       backButtonText: '',
@@ -34,6 +36,7 @@ var config={
     HttpClientModule,
     IonicStorageModule.forRoot(),
     IonicModule.forRoot(MyApp,config),
+    ChartsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

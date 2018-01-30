@@ -1,0 +1,31 @@
+page-relatorio-gasto-individual-manutencao {
+
+  ion-navbar {
+      .toolbar-background-md{
+          background: color($colors,secondary);
+      }
+   }
+   .subtitle {
+     color: color($colors, secondary);
+     font-weight: 500;
+     padding-top: 15px;
+     padding-bottom: 10px;
+     font-size: 1.0em;
+     padding-left: 16px
+   }
+
+   .subtitle-totalizador {
+     color: #3c3c3c;
+     padding-bottom: 10px;
+     font-size: 0.9em;
+   }
+   .totalizador {
+      font-weight: 500;
+      font-size: 1.0em;
+   }
+
+   .grafico {
+     display: block;
+     padding-left: 5px;
+   }
+}
