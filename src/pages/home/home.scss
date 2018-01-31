@@ -29,10 +29,11 @@ page-home {
   .title {
       font-size: 0.85em;
       color: color($colors, primary);
+      font-weight: 500;
   }
   .principal {
       font-size: 1.0em;
-      font-weight: bold;
+      font-weight: 500;
       color: color($colors, primary);
   }
 
@@ -43,6 +44,14 @@ page-home {
   .secundario {
     color: color($colors, primary);
     font-size: 0.8em;
+  }
+
+  .atrasado {
+    color: red;
+    font-weight: 500;
+  }
+  .dentroDoPrazo {
+    color: green;
   }
 
   .icon-edit {

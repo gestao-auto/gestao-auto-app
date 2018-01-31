@@ -34,7 +34,8 @@ export class MyApp {
       { title: 'Usuário', component: 'ProprietarioPage', icon:'person' },
       { title: 'Veículo', component: 'VeiculoPage', icon:'car' },
       { title: 'Manuten\u00E7\u00F5es', component: 'ListagemManutencaoPage', icon:'construct' },
-      { title: 'Preferências de notificação', component: 'PreferenciasPage', icon:'ios-alarm' },
+      { title: 'Relatórios', component: 'RelatorioGastoIndividualManutencaoPage', icon:'book' },
+      { title: 'Preferências de notificação', component: 'PreferenciasPage', icon:'notifications' },
       { title: 'Sair', component: 'LoginPage', icon:'log-out' }
     ];
 

@@ -16,61 +16,44 @@
 </ion-header>
 
 <ion-content>
-  <ion-grid>
-    <ion-row class="item item-md" *ngFor="let m of manutencoes;">
-      <ion-col>
-        <ion-label class="principal">{{m.tipoManutencao}}</ion-label>
-        <ion-label>{{m.odometroPrevisto}} KM</ion-label>
-      </ion-col>
-      <ion-col>
-        <ion-label>
-          <ion-icon name="checkmark"></ion-icon>
-          &nbsp;{{m.status}}
-        </ion-label>
-        <ion-label>
-          <ion-icon name="calendar"></ion-icon>
-          &nbsp;{{m.data}}
-        </ion-label>
-      </ion-col>
-      <ion-col>
-        <ion-label>
-          <ion-icon name="pin"></ion-icon>
-          &nbsp;{{m.oficina}}
-        </ion-label>
-        <ion-label>
-          <ion-icon name="cash"></ion-icon>
-          &nbsp;R${{m.valor}}
-        </ion-label>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-  <ion-card *ngFor="let m of manutencoes;" (click)="onClick(m.codigo)">
-    <ion-row>
-      <ion-col>
-        <ion-label class="principal">{{m.tipoManutencao}}</ion-label>
-        <ion-label>{{m.odometroPrevisto}} KM</ion-label>
-      </ion-col>
-      <ion-col>
-        <ion-label>
-          <ion-icon name="checkmark"></ion-icon>
-          &nbsp;{{m.status}}
-        </ion-label>
-        <ion-label>
-          <ion-icon name="calendar"></ion-icon>
-          &nbsp;{{m.data}}
-        </ion-label>
-      </ion-col>
-      <ion-col *ngIf="m.status != 'Realizada'">
-        <ion-label *ngIf="m.status != 'Realizada'">
-          <ion-icon name="pin"></ion-icon>
-          &nbsp;{{m.oficina}}
-        </ion-label>
-        <ion-label>
-          <ion-icon name="cash"></ion-icon>
-          &nbsp;R${{m.valor}}
-        </ion-label>
-      </ion-col>
-    </ion-row>
+  <ion-card *ngFor="let m of manutencoes;" (click)="acessarManutencao(m.codigo)">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-label class="principal">{{m.tipoManutencao}}</ion-label>
+          <ion-label>{{m.odometroPrevisto}} KM</ion-label>
+        </ion-col>
+        <ion-col>
+          <ion-label>
+            <ion-icon name="checkmark" *ngIf="m.status == 'Realizada'"></ion-icon>
+            <ion-icon name="warning" *ngIf="m.status != 'Realizada'"></ion-icon>
+            &nbsp;{{m.status}}
+          </ion-label>
+          <ion-label *ngIf="m.status == 'Realizada'">
+            <ion-icon name="calendar"></ion-icon>
+            {{m.data}}
+          </ion-label>
+          <ion-label *ngIf="m.status != 'Realizada'">
+            <ion-icon name="calendar"></ion-icon>
+            {{m.dataPrevista}}
+          </ion-label>
+        </ion-col>
+        <ion-col>
+          <ion-label>
+            <ion-icon name="pin" *ngIf="m.status == 'Realizada'"></ion-icon>
+            &nbsp;{{m.nomeReparador}}
+          </ion-label>
+          <ion-label *ngIf="m.status == 'Realizada'">
+            <ion-icon name="cash"></ion-icon>
+            &nbsp;R${{m.valorTotal}}
+          </ion-label>
+          <ion-label *ngIf="m.status != 'Realizada'" class="estimado">
+            <ion-icon name="cash"></ion-icon>
+            &nbsp;R${{m.valorTotal}}
+          </ion-label>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-card>
 
   <ion-fab right bottom >

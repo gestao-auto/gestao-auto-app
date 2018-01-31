@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, ViewController, NavParams, ToastController } from 'ionic-angular';
 import { Storage } from "@ionic/storage";
 import { VeiculoProvider } from '../../providers/veiculo/veiculo';
+import { JwtHelper } from "angular2-jwt";
 
 
 @IonicPage()
@@ -12,19 +13,28 @@ import { VeiculoProvider } from '../../providers/veiculo/veiculo';
 export class SelecionarVeiculoPage {
   veiculoAtual: any;
   veiculos = Array<any>();
+  codigoUsuario : number;
+  jwtHelper = new JwtHelper();
 
   constructor(private viewCtrl: ViewController
     , private navParams: NavParams
     , private storage : Storage
     , private veiculoProvider: VeiculoProvider
     , private toastCtrl: ToastController) {
-    console.log('SelecionarVeiculoPage - ' + this.navParams.get('veiculoAtual'));
-    this.veiculoAtual = this.navParams.get('veiculoAtual');
-    this.get();
+      console.log('SelecionarVeiculoPage - ' + this.navParams.get('veiculoAtual'));
+
+      this.codigoUsuario = null;
+      this.veiculoAtual = this.navParams.get('veiculoAtual');
+
+      this.storage.get('token').then(
+        token => {
+          this.codigoUsuario = this.jwtHelper.decodeToken(token).sub;
+          this.get();
+      });
   }
 
   get() {
-    this.veiculoProvider.get(1)
+    this.veiculoProvider.getByUser(this.codigoUsuario)
       .then((veiculos: Array<any>) => {
         console.log("SelecionarVeiculoPage -> get -> veiculos: " + veiculos.toString());
         if (veiculos != null) {
@@ -43,8 +53,9 @@ export class SelecionarVeiculoPage {
     this.viewCtrl.dismiss();
   }
 
-  selecionar(veiculo){
-    this.storage.set("veiculo", JSON.stringify(veiculo));
+  selecionar(veiculo) {
+    //this.storage.set("veiculo", JSON.stringify(veiculo));
+    this.storage.set("veiculo", {'codigo': veiculo.codigo, 'nome': veiculo.nome});
     this.viewCtrl.dismiss(veiculo);
   }
 

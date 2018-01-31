@@ -76,4 +76,15 @@ export class ManutencaoProvider {
         });
       });
   }
+  
+  getNextReviewByVehicle(veiculo : number) {
+    return new Promise((resolve, reject) => {
+      this.http.get(URL + "proxima/" + veiculo.toString())
+        .subscribe(data => {
+          resolve(data);
+        }, error => {
+          reject(error);
+        });
+      });
+  }
 }
