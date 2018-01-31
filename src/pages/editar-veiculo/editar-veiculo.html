@@ -1,18 +1,55 @@
-<!--
-  Generated template for the EditarVeiculoPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>editar-veiculo</ion-title>
+  <ion-navbar hideBackButton>
+    <button ion-button menuToggle>
+       <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Cadastro de Veículo</ion-title>
   </ion-navbar>
 
 </ion-header>
 
-
-<ion-content padding>
-
+<ion-content padding style="background-color: white;">
+    <ion-list>
+      <ion-item>
+        <ion-label floating>Nome</ion-label>
+        <ion-input [(ngModel)]="veiculoEditar.nome" max="45" ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating >Marca</ion-label>
+        <ion-select [(ngModel)]="marcaSelecionada" [compareWith]="compareMAR" (ionChange)="getModelos(marcaSelecionada.codigo)">
+          <ion-option *ngFor="let marca of marcas" [value]="marca" >{{marca.nome}}</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label floating >Modelos</ion-label>
+        <ion-select [(ngModel)]="veiculoEditar.modelo" [compareWith]="compareMOD">
+          <ion-option *ngFor="let modelo of modelos" [value]="modelo" >{{modelo.nome}}</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Placas</ion-label>
+        <ion-input [(ngModel)]="veiculoEditar.placa" type="text" max="8" ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Ano</ion-label>
+        <ion-input [(ngModel)]="veiculoEditar.ano" type="number" max="4" min="4"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating >Modalidade</ion-label>
+        <ion-select [(ngModel)]="veiculoEditar.modalidade">
+          <ion-option value="Carro">Carro</ion-option>
+          <ion-option value="Motocicleta">Moto</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Renavam</ion-label>
+        <ion-input [(ngModel)]="veiculoEditar.renavam" max="45"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Kilometragem</ion-label>
+        <ion-input [(ngModel)]="veiculoEditar.odometro" type="number" max="8" ></ion-input>
+      </ion-item>
+    </ion-list>
+    <button ion-button block color="primary" (click)="submit()">Salvar</button>
 </ion-content>

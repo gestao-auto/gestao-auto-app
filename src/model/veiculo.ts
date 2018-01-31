@@ -10,6 +10,7 @@ export class Veiculo {
         public modalidade: string,
         public renavam: string,
         public odometro: number,
+        public proprietario: number
         ) {
         }
 }

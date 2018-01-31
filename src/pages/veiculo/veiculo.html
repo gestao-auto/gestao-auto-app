@@ -8,13 +8,11 @@
   </ion-navbar>
 
 </ion-header>
-
-
 <ion-content>
-  <ion-card *ngFor="let v of listaFake;">
-    <ion-card-title style="text-align:center">
-      <ion-label class="principal">{{v.nome}}</ion-label>
-    </ion-card-title>
+  <ion-card *ngFor="let v of listaVeiculos;" (click)="editarVeiculo(v)">
+    <ion-card-header style="text-align:center">
+      <ion-label class="principal" color="labelgrey">{{v.nome}}</ion-label>
+    </ion-card-header>
     <ion-row>
       <ion-col style="margin: 20 auto;">
         <ion-label style="text-align:center">{{v.placa}}</ion-label>
@@ -28,7 +26,7 @@
   </ion-card>
 
   <ion-fab right bottom >
-    <button ion-fab color="secondary">
+    <button ion-fab color="secondary" (click)="novoVeiculo();">
       <ion-icon name="add"></ion-icon>
     </button>
   </ion-fab>

@@ -24,7 +24,7 @@ export class SelecionarVeiculoPage {
   }
 
   get() {
-    this.veiculoProvider.get()
+    this.veiculoProvider.get(1)
       .then((veiculos: Array<any>) => {
         console.log("SelecionarVeiculoPage -> get -> veiculos: " + veiculos.toString());
         if (veiculos != null) {

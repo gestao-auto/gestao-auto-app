@@ -1,0 +1,21 @@
+{
+  "name": "gestao-auto-app",
+  "description": "App de Gestao Automotiva",
+  "main": "",
+  "authors": [
+    "Ionic Framework"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/gestao-auto/gestao-auto-app",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "ion-autocomplete": "^0.4.0"
+  }
+}
