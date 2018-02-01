@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { AuthenticationProvider } from '../providers/authentication/authentication';
 import { ProprietarioProvider } from '../providers/proprietario/proprietario';
 import { ManutencaoProvider } from '../providers/manutencao/manutencao';
+import { IndicadorIndividualProvider } from '../providers/indicador-individual/indicador-individual';
 
 
 @Component({

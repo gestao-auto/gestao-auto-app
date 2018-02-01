@@ -5,6 +5,13 @@
     <button ion-button menuToggle>
        <ion-icon name="menu"></ion-icon>
     </button>
+
+    <!-- Seleção de veículo -->
+    <ion-buttons end>
+      <button ion-button solid color="light" (click)="selecionarVeiculo()">
+        {{veiculoSelecionado.nome}}
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -18,21 +25,21 @@
       <ion-col>
           <ion-item>
             <ion-label stacked>De</ion-label>
-            <ion-datetime displayFormat="DD/MM/YYYY"></ion-datetime>
+            <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="dataInicial"></ion-datetime>
           </ion-item>
       </ion-col>
 
       <ion-col>
           <ion-item>
             <ion-label stacked>Até</ion-label>
-            <ion-datetime displayFormat="DD/MM/YYYY"></ion-datetime>
+            <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="dataFinal"></ion-datetime>
           </ion-item>
       </ion-col>
     </ion-row>
 
     <ion-row>
         <ion-col>
-          <div text-center style="padding-top: 10px; font-size: 0.9em"> 2 registros em 20 dias </div>
+          <div text-center style="padding-top: 10px; font-size: 0.9em"> {{indicador.registros}} registros em {{indicador.dias}} dias </div>
         </ion-col>
     </ion-row>
 
@@ -46,17 +53,17 @@
     <ion-row>
         <ion-col>
           <div text-center class="subtitle-totalizador"> Total </div>
-          <div text-center class="totalizador"> R$ 150,00 </div>
+          <div text-center class="totalizador"> R$ {{indicador.custoTotal}} </div>
         </ion-col>
 
         <ion-col>
           <div text-center class="subtitle-totalizador"> Por dia </div>
-          <div text-center class="totalizador"> R$ 150,00 </div>
+          <div text-center class="totalizador"> R$ {{indicador.custoPorDia}} </div>
         </ion-col>
 
         <ion-col>
           <div text-center class="subtitle-totalizador"> Custo/Km </div>
-          <div text-center class="totalizador"> R$ 10,00 </div>
+          <div text-center class="totalizador"> R$ {{indicador.custoPorQuilometragem}}</div>
         </ion-col>
     </ion-row>
 
@@ -67,15 +74,15 @@
       </ion-col>
     </ion-row>
 
-    <ion-row>
+     <ion-row>
       <ion-col>
         <div class="grafico">
           <canvas baseChart
-                     [data]="dados"
-                     [labels]="legenda"
+                     [data]="doughnutChartData"
+                     [labels]="doughnutChartLabels"
                      [legend]="true"
-                     [options]="opcoes"
-                     [chartType]="tipo"
+                     [options]="options"
+                     [chartType]="doughnutChartType"
                      (chartHover)="chartHovered($event)"
                      (chartClick)="chartClicked($event)">
           </canvas>

@@ -18,6 +18,7 @@ import { PreferenciasProvider } from '../providers/preferencias/preferencias';
 import { VeiculoProvider } from '../providers/veiculo/veiculo';
 import { HomeProvider } from '../providers/home/home';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
+import { IndicadorIndividualProvider } from '../providers/indicador-individual/indicador-individual';
 
 
 var config={
@@ -53,7 +54,8 @@ var config={
     ManutencaoProvider,
     PreferenciasProvider,
     VeiculoProvider,
-    HomeProvider
+    HomeProvider,
+    IndicadorIndividualProvider
   ]
 })
 export class AppModule {}
