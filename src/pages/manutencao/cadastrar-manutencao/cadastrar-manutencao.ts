@@ -18,7 +18,7 @@ import { JwtHelper } from "angular2-jwt";
   templateUrl: 'cadastrar-manutencao.html',
 })
 export class CadastrarManutencaoPage {
-  manutencao = {}
+  manutencao : any;
   codigoUsuario : string;
   jwtHelper = new JwtHelper();
 
@@ -32,7 +32,7 @@ export class CadastrarManutencaoPage {
 
       this.codigoUsuario = "";
       this.manutencao = this.navParams.get('manutencao');
-      if(this.manutencao.hasOwnProperty("diasRestantes")){
+      if(this.manutencao != null && this.manutencao.hasOwnProperty("diasRestantes")){
         this.manutencaoProvider.get(this.manutencao["codigo"])
           .then((manutencao: any) => {
             this.manutencao = (manutencao != null) ? manutencao : {};
@@ -40,6 +40,7 @@ export class CadastrarManutencaoPage {
             this.mostrarToast("Ops! Não conseguimos recuperar suas informações. Por favor, tente novamente.");
           })
       }
+      else this.manutencao = {};
 
       this.storage.get('token').then(
         token => {
