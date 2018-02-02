@@ -104,8 +104,8 @@ export class HomePage {
     });
   }
 
-  acessarManutencao(codigoManutencao){
-    console.log("Manutencao - " + codigoManutencao);
-    this.navCtrl.push('CadastrarManutencaoPage', {'codigoManutencao' : codigoManutencao});
+  acessarManutencao(manutencao){
+    console.log("Manutencao - " + manutencao);
+    this.navCtrl.push('CadastrarManutencaoPage', {'manutencao' : manutencao});
   }
 }
