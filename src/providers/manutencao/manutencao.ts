@@ -57,7 +57,7 @@ export class ManutencaoProvider {
 
   delete(manutencao) {
     return new Promise((resolve, reject) => {
-      this.http.put(URL + manutencao.codigo.toString(), {headers: this.contentHeader})
+      this.http.delete(URL + manutencao.codigo.toString(), {headers: this.contentHeader})
         .subscribe(data => {
           resolve(data);
         }, error => {

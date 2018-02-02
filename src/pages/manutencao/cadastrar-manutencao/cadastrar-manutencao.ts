@@ -32,6 +32,14 @@ export class CadastrarManutencaoPage {
 
       this.codigoUsuario = "";
       this.manutencao = this.navParams.get('manutencao');
+      if(this.manutencao.hasOwnProperty("diasRestantes")){
+        this.manutencaoProvider.get(this.manutencao["codigo"])
+          .then((manutencao: any) => {
+            this.manutencao = (manutencao != null) ? manutencao : {};
+          }, (error) => {
+            this.mostrarToast("Ops! Não conseguimos recuperar suas informações. Por favor, tente novamente.");
+          })
+      }
 
       this.storage.get('token').then(
         token => {
@@ -67,6 +75,16 @@ export class CadastrarManutencaoPage {
         if (manutencao != null) {
           this.manutencao = manutencao;
         }
+      }, (error) => {
+        this.mostrarToast("Ops! Não conseguimos recuperar suas informações. Por favor, tente novamente.");
+      });
+  }
+
+  apagar() {
+    this.manutencaoProvider.delete(this.manutencao)
+      .then((manutencao: Array<any>) => {
+        console.log("CadastrarManutencaoPage -> apagar -> manutencao: " + manutencao.toString());
+        this.navCtrl.pop();
       }, (error) => {
         this.mostrarToast("Ops! Não conseguimos recuperar suas informações. Por favor, tente novamente.");
       });
