@@ -58,8 +58,9 @@ export class HomePage {
       .then((veiculos : Array<Veiculo>) => {
         if (veiculos.length > 0) {
           this.veiculoSelecionado = {'codigo': veiculos[0].codigo, 'nome': veiculos[0].nome};
-          this.storage.set("veiculo", this.veiculoSelecionado);
-          this.get();
+          this.storage.set("veiculo", this.veiculoSelecionado).then((val) => {
+            this.get();
+          });
         } else {
             this.storage.set("veiculo", this.veiculoSelecionado);
         }
