@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 /**
- * Generated class for the CadastrarManutencaoPage page.
+ * Generated class for the ListarItensPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -10,16 +10,16 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-cadastrar-manutencao',
-  templateUrl: 'cadastrar-manutencao.html',
+  selector: 'page-listar-itens',
+  templateUrl: 'listar-itens.html',
 })
-export class CadastrarManutencaoPage {
+export class ListarItensPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad CadastrarManutencaoPage');
+    console.log('ionViewDidLoad ListarItensPage');
   }
 
 }

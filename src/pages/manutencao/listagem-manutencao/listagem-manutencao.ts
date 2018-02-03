@@ -5,8 +5,8 @@ import { Modal, ModalController } from 'ionic-angular';
 import { Storage } from "@ionic/storage";
 import { HttpErrorResponse } from '@angular/common/http';
 import { JwtHelper } from "angular2-jwt";
-import { ManutencaoProvider } from '../../providers/manutencao/manutencao';
-import { Manutencao } from '../../model/manutencao';
+import { ManutencaoProvider } from '../../../providers/manutencao/manutencao';
+import { Manutencao } from '../../../model/manutencao';
 
 @IonicPage()
 @Component({
@@ -75,8 +75,8 @@ export class ListagemManutencaoPage {
     toast.present();
   }
 
-  acessarManutencao(codigoManutencao){
-    console.log("Manutencao - " + codigoManutencao);
-    this.navCtrl.push('CadastrarManutencaoPage', {'codigoManutencao' : codigoManutencao});
+  acessarManutencao(manutencao){
+    console.log("Manutencao - " + manutencao);
+    this.navCtrl.push('CadastrarManutencaoPage', {'manutencao' : manutencao});
   }
 }

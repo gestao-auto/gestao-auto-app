@@ -54,9 +54,9 @@ export class SelecionarVeiculoPage {
   }
 
   selecionar(veiculo) {
-    //this.storage.set("veiculo", JSON.stringify(veiculo));
-    this.storage.set("veiculo", {'codigo': veiculo.codigo, 'nome': veiculo.nome});
-    this.viewCtrl.dismiss(veiculo);
+    this.storage.set("veiculo", {'codigo': veiculo.codigo, 'nome': veiculo.nome}).then((val) => {
+      this.viewCtrl.dismiss(veiculo);
+    });
   }
 
   mostrarToast(mensagem : string) {
