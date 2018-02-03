@@ -29,11 +29,11 @@
       </ion-item>
       <ion-item>
         <ion-label floating>Placas</ion-label>
-        <ion-input [(ngModel)]="veiculoEditar.placa" type="text" max="8" ></ion-input>
+        <ion-input [(ngModel)]="veiculoEditar.placa" type="text" max="8"  mask="***-****"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label floating>Ano</ion-label>
-        <ion-input [(ngModel)]="veiculoEditar.ano" type="number" max="4" min="4"></ion-input>
+        <ion-input [(ngModel)]="veiculoEditar.ano" type="number" max="4" min="4" pattern="\d*" mask="**-********"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label floating >Modalidade</ion-label>

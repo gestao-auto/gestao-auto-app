@@ -19,7 +19,6 @@ import { VeiculoProvider } from '../providers/veiculo/veiculo';
 import { HomeProvider } from '../providers/home/home';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 
-
 var config={
       backButtonText: '',
       iconMode: 'md',
