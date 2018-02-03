@@ -26,7 +26,8 @@ export class CadastrarManutencaoPage {
 
       this.codigoUsuario = "";
       this.manutencao = this.navParams.get('manutencao');
-      if(this.manutencao != null && this.manutencao.hasOwnProperty("diasRestantes")){
+      if(this.fromHome()){
+        console.log('CadastrarManutencaoPage - fromHome');
         this.manutencaoProvider.get(this.manutencao["codigo"])
           .then((manutencao: any) => {
             this.manutencao = (manutencao != null) ? manutencao : {};
@@ -44,6 +45,10 @@ export class CadastrarManutencaoPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CadastrarManutencaoPage');
+  }
+
+  fromHome(){
+    return this.manutencao != null && this.manutencao.hasOwnProperty("diasRestantes");
   }
 
   salvar(){

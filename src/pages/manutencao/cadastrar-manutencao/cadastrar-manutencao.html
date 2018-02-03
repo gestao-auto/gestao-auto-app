@@ -81,7 +81,7 @@
         <button ion-button solid (click)="salvar()" >Salvar</button>
         <button ion-button solid (click)="itens()" color="secondary">Itens</button>
       </ion-col>
-      <ion-col>
+      <ion-col *ngIf="manutencao != null && manutencao.codigo != null">
         <button ion-button solid (click)="apagar()" color="danger">Apagar</button>
       </ion-col>
     </ion-row>
