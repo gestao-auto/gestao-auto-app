@@ -5,12 +5,6 @@ import { Storage } from "@ionic/storage";
 import { ManutencaoProvider } from '../../../providers/manutencao/manutencao';
 import { JwtHelper } from "angular2-jwt";
 
-/**
- * Generated class for the CadastrarManutencaoPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
