@@ -7,6 +7,7 @@ export class IndicadorGastoIndividualManutencao {
         public custoTotal: string,
         public custoPorDia: string,
         public custoPorQuilometragem: string,
-        public itensManuteidos : Array<IndicadorGastoIndividualManutencaoItemManuteido>
+        public nomeItensManuteidos : string[],
+        public quantidadeItensManuteidos : number[]
     ) {}
 }
