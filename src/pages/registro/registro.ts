@@ -58,8 +58,9 @@ export class RegistroPage {
   }
 
   authSuccess(token) {
-    this.storage.set('token', token);
-    this.navCtrl.setRoot('ProprietarioPage');
+    this.storage.set('token', token).then((val) => {
+      this.navCtrl.setRoot('ProprietarioPage');
+    });
   }
 
   authError(err){

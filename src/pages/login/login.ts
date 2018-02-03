@@ -41,8 +41,9 @@ export class LoginPage {
   }
 
   authSuccess(token) {
-    this.storage.set('token', token);
-    this.navCtrl.push('HomePage');
+    this.storage.set('token', token).then((val) => {
+      this.navCtrl.push('HomePage');
+    });  
   }
 
   authError(err){

@@ -49,8 +49,9 @@ export class VeiculoPage {
   }
 
   editarVeiculo(veiculo){
-    this.storage.set("veiculoEditar", JSON.stringify(veiculo));
-    this.navCtrl.setRoot('EditarVeiculoPage');
+    this.storage.set("veiculoEditar", JSON.stringify(veiculo)).then((val) => {
+      this.navCtrl.setRoot('EditarVeiculoPage');
+    });
   }
 
   mostrarToast(mensagem : string) {

@@ -1,0 +1,89 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Manuten\u00E7\u00E3o</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label stacked>
+        <ion-icon name="list-box" *ngIf="manutencao.tipoManutencao == 'REVISAO'"></ion-icon>
+        <ion-icon name="construct" *ngIf="manutencao.tipoManutencao != 'REVISAO'"></ion-icon>
+        Tipo
+      </ion-label>
+      <ion-input type="text" [(ngModel)]="manutencao.tipoManutencao"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>
+        <ion-icon name="paper"></ion-icon>
+        Identificação
+      </ion-label>
+      <ion-input type="text" [(ngModel)]="manutencao.descricao"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>
+        <ion-icon name="speedometer"></ion-icon>
+        Hodometro previsto
+      </ion-label>
+      <ion-input type="text" [(ngModel)]="manutencao.odometroPrevisto"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>
+        <ion-icon name="speedometer"></ion-icon>
+        Hodometro realizado
+      </ion-label>
+      <ion-input type="text" [(ngModel)]="manutencao.odometro"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>
+        <ion-icon name="calendar"></ion-icon>
+        Data prevista
+      </ion-label>
+      <ion-input type="text" [(ngModel)]="manutencao.dataPrevista"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>
+        <ion-icon name="calendar"></ion-icon>
+        Data realizada
+      </ion-label>
+      <ion-input type="text" [(ngModel)]="manutencao.data"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>
+        <ion-icon name="contact"></ion-icon>
+        Oficina
+      </ion-label>
+      <ion-input type="text" [(ngModel)]="manutencao.codigoReparador"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>
+        <ion-icon name="cash"></ion-icon>
+        Valor total
+      </ion-label>
+      <ion-input type="text" [(ngModel)]="manutencao.valorTotal"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>
+        <ion-icon name="text"></ion-icon>
+        Observação
+      </ion-label>
+      <ion-input type="text" [(ngModel)]="manutencao.motivo"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <button ion-button solid (click)="salvar()" >Salvar</button>
+        <button ion-button solid (click)="itens()" color="secondary">Itens</button>
+      </ion-col>
+      <ion-col>
+        <button ion-button solid (click)="apagar()" color="danger">Apagar</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,62 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Selecione um item</ion-title>
+  </ion-navbar>
+  
+</ion-header>
+  
+  
+<ion-content padding>
+  <ion-list>
+    <ion-item-sliding (ionSwipe)="delete(1)">
+      <ion-item (click)="item(1)">
+        <ion-icon name="water" item-start></ion-icon>
+        Troca de \u00F3leo
+        <ion-badge item-end>Já adicionado</ion-badge>
+      </ion-item>
+      <ion-item-options side="right">
+        <button ion-button expandable (click)="delete(item)" color="danger">
+          <ion-icon name="trash"></ion-icon>
+          Remover
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+    <ion-item-sliding (ionSwipe)="delete(2)">
+      <ion-item (click)="item(2)">
+        <ion-icon name="cog" item-start></ion-icon>
+        Motor
+      </ion-item>
+    </ion-item-sliding>
+    <ion-item-sliding (ionSwipe)="delete(3)">
+      <ion-item (click)="item(3)">
+        <ion-icon name="pause" item-start></ion-icon>
+        Balanceamento
+      </ion-item>
+    </ion-item-sliding>
+    <ion-item-sliding (ionSwipe)="delete(4)">
+      <ion-item (click)="item(4)">
+        <ion-icon name="move" item-start></ion-icon>
+        Geometria
+      </ion-item>
+    </ion-item-sliding>
+    <ion-item-sliding (ionSwipe)="delete(5)">
+      <ion-item (click)="item(5)">
+        <ion-icon name="aperture" item-start></ion-icon>
+        Pneu
+      </ion-item>
+    </ion-item-sliding>
+    <ion-item-sliding (ionSwipe)="delete(6)">
+      <ion-item (click)="item(6)">
+        <ion-icon name="options" item-start></ion-icon>
+        Suspens\u00E3o
+      </ion-item>
+    </ion-item-sliding>
+    <ion-item-sliding (ionSwipe)="delete(7)">
+      <ion-item (click)="item(7)">
+        <ion-icon name="contract" item-start></ion-icon>
+        Freio
+      </ion-item>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>  
