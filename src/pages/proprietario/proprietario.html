@@ -43,6 +43,11 @@
         </ion-select>
       </ion-item>
 
+      <ion-item>
+        <ion-label floating>Sobrenome</ion-label>
+        <ion-input [(ngModel)]="proprietario.sobrenome" mask="***-****"></ion-input>
+      </ion-item>
+
     </ion-list>
     <br><br>
     <button ion-button block color="primary" (click)="submit()">Salvar</button>
