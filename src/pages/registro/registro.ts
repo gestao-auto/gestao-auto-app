@@ -86,10 +86,11 @@ export class RegistroPage {
    dataHoje() {
     var data = new Date();
     var dia = data.getDate();
+    var diaString = dia < 10 ? '0' + dia.toString() : dia.toString();
     var mes = data.getMonth()+1;
     var mesString = mes < 10 ? '0'+ mes.toString() : mes.toString();
     var ano = data.getFullYear();
-    return [ano, mesString, dia].join('-');
+    return [ano, mesString, diaString].join('-');
 }
 
 }

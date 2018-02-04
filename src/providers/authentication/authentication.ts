@@ -25,7 +25,6 @@ export class AuthenticationProvider {
   }
 
   logout() {
-    this.storage.remove('token');
-    this.storage.remove('veiculo');
+    this.storage.clear();
   }
 }
