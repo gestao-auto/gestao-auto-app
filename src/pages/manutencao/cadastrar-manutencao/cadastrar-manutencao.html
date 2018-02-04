@@ -29,28 +29,28 @@
         <ion-icon name="speedometer"></ion-icon>
         Hodometro previsto
       </ion-label>
-      <ion-input type="text" [(ngModel)]="manutencao.odometroPrevisto"></ion-input>
+      <ion-input type="number" [(ngModel)]="manutencao.odometroPrevisto"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label stacked>
         <ion-icon name="speedometer"></ion-icon>
         Hodometro realizado
       </ion-label>
-      <ion-input type="text" [(ngModel)]="manutencao.odometro"></ion-input>
+      <ion-input type="number" [(ngModel)]="manutencao.odometro"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label stacked>
         <ion-icon name="calendar"></ion-icon>
         Data prevista
       </ion-label>
-      <ion-input type="text" [(ngModel)]="manutencao.dataPrevista"></ion-input>
+      <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="manutencao.dataPrevista"></ion-datetime>
     </ion-item>
     <ion-item>
       <ion-label stacked>
         <ion-icon name="calendar"></ion-icon>
         Data realizada
       </ion-label>
-      <ion-input type="text" [(ngModel)]="manutencao.data"></ion-input>
+      <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="manutencao.data"></ion-datetime>
     </ion-item>
     <ion-item>
       <ion-label stacked>
@@ -64,7 +64,7 @@
         <ion-icon name="cash"></ion-icon>
         Valor total
       </ion-label>
-      <ion-input type="text" [(ngModel)]="manutencao.valorTotal"></ion-input>
+      <ion-input type="number" [(ngModel)]="manutencao.valorTotal"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label stacked>
