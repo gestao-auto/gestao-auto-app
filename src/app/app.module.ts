@@ -13,6 +13,7 @@ import { UsuarioProvider } from '../providers/usuario/usuario';
 import { ProprietarioPage } from '../pages/proprietario/proprietario';
 import { ProprietarioProvider } from '../providers/proprietario/proprietario';
 import { ListagemManutencaoPage } from '../pages/manutencao/listagem-manutencao/listagem-manutencao';
+import { CarroPneuPage } from '../pages/carro-pneu/carro-pneu';
 import { ManutencaoProvider } from '../providers/manutencao/manutencao';
 import { PreferenciasProvider } from '../providers/preferencias/preferencias';
 import { VeiculoProvider } from '../providers/veiculo/veiculo';

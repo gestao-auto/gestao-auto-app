@@ -37,6 +37,7 @@ export class MyApp {
       { title: 'Manuten\u00E7\u00F5es', component: 'ListagemManutencaoPage', icon:'construct' },
       { title: 'Relatórios', component: 'RelatorioGastoIndividualManutencaoPage', icon:'book' },
       { title: 'Preferências de notificação', component: 'PreferenciasPage', icon:'notifications' },
+      { title: 'Carro Pneu', component: 'CarroPneuPage', icon:'car' },
       { title: 'Sair', component: 'LoginPage', icon:'log-out' }
     ];
 
