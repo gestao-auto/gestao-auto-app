@@ -1,10 +1,7 @@
 <ion-header>
 
-  <ion-navbar hideBackButton>
-    <button ion-button menuToggle>
-       <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Cadastro de Veículo</ion-title>
+  <ion-navbar>
+    <ion-title>Cadastro de veículo</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -15,41 +12,64 @@
         <ion-label floating>Nome</ion-label>
         <ion-input [(ngModel)]="veiculoEditar.nome" max="45" ></ion-input>
       </ion-item>
+
       <ion-item>
         <ion-label floating >Marca</ion-label>
         <ion-select [(ngModel)]="marcaSelecionada" [compareWith]="compareMAR" (ionChange)="getModelos(marcaSelecionada.codigo)">
           <ion-option *ngFor="let marca of marcas" [value]="marca" >{{marca.nome}}</ion-option>
         </ion-select>
       </ion-item>
+
       <ion-item>
         <ion-label floating >Modelos</ion-label>
         <ion-select [(ngModel)]="veiculoEditar.modelo" [compareWith]="compareMOD">
           <ion-option *ngFor="let modelo of modelos" [value]="modelo" >{{modelo.nome}}</ion-option>
         </ion-select>
       </ion-item>
+
       <ion-item>
         <ion-label floating>Placas</ion-label>
         <ion-input [(ngModel)]="veiculoEditar.placa" type="text" max="8"  mask="***-****"></ion-input>
       </ion-item>
+
       <ion-item>
         <ion-label floating>Ano</ion-label>
-        <ion-input [(ngModel)]="veiculoEditar.ano" type="number" max="4" min="4" pattern="\d*" mask="**-********"></ion-input>
+        <ion-datetime displayFormat="YYYY" [(ngModel)]="veiculoEditar.ano"></ion-datetime>
       </ion-item>
+
       <ion-item>
-        <ion-label floating >Modalidade</ion-label>
+        <ion-label floating>Modalidade</ion-label>
         <ion-select [(ngModel)]="veiculoEditar.modalidade">
           <ion-option value="Carro">Carro</ion-option>
           <ion-option value="Motocicleta">Moto</ion-option>
         </ion-select>
       </ion-item>
+
       <ion-item>
         <ion-label floating>Renavam</ion-label>
         <ion-input [(ngModel)]="veiculoEditar.renavam" max="45"></ion-input>
       </ion-item>
+
       <ion-item>
-        <ion-label floating>Kilometragem</ion-label>
+        <ion-label floating>Quilometragem</ion-label>
         <ion-input [(ngModel)]="veiculoEditar.odometro" type="number" max="8" ></ion-input>
       </ion-item>
+
+      <ion-item>
+        <ion-label floating>Data de aquisição</ion-label>
+        <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="veiculoEditar.dataAquisicao"></ion-datetime>
+      </ion-item>
+
+      <ion-item padding-top>
+        <ion-label>Único dono</ion-label>
+        <ion-toggle [(ngModel)]="veiculoEditar.unicoDono" (ionChange)="isExibirDataAquisicaoPrimeiroDono(veiculoEditar.unicoDono)"></ion-toggle>
+      </ion-item>
+
+      <ion-item *ngIf="exibirDataAquisicaoPrimeiroDono == false">
+        <ion-label floating>Data aquisição primeiro dono</ion-label>
+        <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="veiculoEditar.dataAquisicaoPrimeiroDono"></ion-datetime>
+      </ion-item>
+
     </ion-list>
     <button ion-button block color="primary" (click)="submit()">Salvar</button>
 </ion-content>

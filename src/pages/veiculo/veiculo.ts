@@ -32,7 +32,6 @@ export class VeiculoPage {
   }
 
   getByUser(){
-    console.log(this.codigoUsuario);
     this.veiculoProvider.getByUser(this.codigoUsuario)
       .then((veiculos: Array<Veiculo>) => {
           if (veiculos != null) {
@@ -45,12 +44,12 @@ export class VeiculoPage {
 
   novoVeiculo(){
     this.storage.remove("veiculoEditar");
-    this.navCtrl.setRoot('EditarVeiculoPage');
+    this.navCtrl.push('EditarVeiculoPage');
   }
 
   editarVeiculo(veiculo){
     this.storage.set("veiculoEditar", JSON.stringify(veiculo)).then((val) => {
-      this.navCtrl.setRoot('EditarVeiculoPage');
+      this.navCtrl.push('EditarVeiculoPage');
     });
   }
 

@@ -6,11 +6,13 @@ export class Veiculo {
         public nome: string,
         public modelo: Modelo,
         public placa: string,
-        public ano: number,
+        public ano: string,
         public modalidade: string,
         public renavam: string,
         public odometro: number,
-        public proprietario: number
-        ) {
-        }
+        public proprietario: number,
+        public dataAquisicao : string,
+        public dataAquisicaoPrimeiroDono : string,
+        public unicoDono : boolean
+        ) {}
 }

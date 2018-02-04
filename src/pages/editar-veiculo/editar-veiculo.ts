@@ -20,6 +20,7 @@ export class EditarVeiculoPage {
   modelos = Array<Modelo>();
   veiculoEditar : Veiculo;
   jwtHelper = new JwtHelper();
+  exibirDataAquisicaoPrimeiroDono : boolean;
 
   constructor(
     public navCtrl: NavController,
@@ -29,16 +30,16 @@ export class EditarVeiculoPage {
     public veiculoProvider : VeiculoProvider,
     private propProvider: ProprietarioProvider
   ) {
-    this.veiculoEditar = new Veiculo(null,null,null,null,null,null,null,null,null);
+    this.veiculoEditar = new Veiculo(null, null, null, null, null, null, null, null, null, null, null, null);
+    this.exibirDataAquisicaoPrimeiroDono = false;
     this.storage.get('veiculoEditar').then(
       veiculo => {
-        this.veiculoEditar = (veiculo == null)
-          ? this.veiculoEditar
-          : JSON.parse(veiculo);
-          this.marcaSelecionada = this.veiculoEditar.modelo != null ? this.veiculoEditar.modelo.marca : null;
-          if(this.marcaSelecionada!= null){
+        this.veiculoEditar = (veiculo == null)  ? this.veiculoEditar : JSON.parse(veiculo);
+        this.marcaSelecionada = this.veiculoEditar.modelo != null ? this.veiculoEditar.modelo.marca : null;
+        this.exibirDataAquisicaoPrimeiroDono = this.veiculoEditar.unicoDono != null ? this.veiculoEditar.unicoDono : this.exibirDataAquisicaoPrimeiroDono;
+        if (this.marcaSelecionada!= null) {
           this.getModelos(this.marcaSelecionada.codigo);
-          }
+        }
       });
       this.getMarcas();
       this.getProprietarioPorUsuario();
@@ -88,6 +89,7 @@ export class EditarVeiculoPage {
       .then((res) => {
         if (res) {
           this.navCtrl.setRoot('VeiculoPage');
+          this.mostrarToast("Veículo salvo com sucesso!");
         }
       }, (error) => {
           this.mostrarToast("Ops! Ocorreu uma falha ao salvar suas informações. Por favor, tente novamente.");
@@ -99,6 +101,7 @@ export class EditarVeiculoPage {
       .then((res) => {
         if (res) {
           this.navCtrl.push('VeiculoPage');
+          this.mostrarToast("Veículo atualizado com sucesso!");
         }
       }, (error) => {
         this.mostrarToast("Ops! Ocorreu uma falha ao cadastrar suas informações. Por favor, tente novamente.");
@@ -117,7 +120,6 @@ getProprietario(codigoUsuario : number){
   .then((proprietario: Proprietario) => {
       if (proprietario != null) {
         this.veiculoEditar.proprietario = proprietario.codigo;
-        console.log(proprietario.codigo);
       }
     }, (error) => {
       this.mostrarToast("Ops! Não conseguimos recuperar suas informações. Por favor, tente novamente.");
@@ -131,6 +133,10 @@ compareMOD(e1: Modelo, e2: Modelo): boolean {
 compareMAR(e1: Marca, e2: Marca): boolean {
   return e1 && e2 ? e1.codigo === e2.codigo : e1 === e2;
 }
+
+  isExibirDataAquisicaoPrimeiroDono(unicoDono) {
+    this.exibirDataAquisicaoPrimeiroDono = unicoDono;
+  }
 
   mostrarToast(mensagem : string) {
     let toast = this.toastCtrl.create({
