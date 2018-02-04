@@ -29,6 +29,7 @@
     "angular2-jwt": "^0.2.3",
     "brmasker-ionic": "^1.0.12",
     "chart.js": "^2.7.1",
+    "cordova-browser": "~5.0.3",
     "cordova-plugin-badge": "^0.8.7",
     "cordova-plugin-device": "^1.1.4",
     "cordova-plugin-ionic-webview": "^1.1.16",
@@ -42,11 +43,10 @@
     "ng2-charts": "^1.6.0",
     "rxjs": "5.5.2",
     "sw-toolbox": "3.6.0",
-    "zone.js": "0.8.18",
-    "cordova-browser": "~5.0.3"
+    "zone.js": "0.8.18"
   },
   "devDependencies": {
-    "@ionic/app-scripts": "3.1.6",
+    "@ionic/app-scripts": "^3.1.8",
     "typescript": "2.4.2"
   },
   "description": "An Ionic project",
