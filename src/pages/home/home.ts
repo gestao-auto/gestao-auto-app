@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, Platform } from 'ionic-angular';
 import { Storage } from "@ionic/storage";
 import { HttpErrorResponse } from '@angular/common/http';
 import { HomeProvider } from '../../providers/home/home';
@@ -9,6 +9,7 @@ import { Veiculo } from '../../model/veiculo';
 import { ToastController } from 'ionic-angular';
 import { VeiculoProvider} from '../../providers/veiculo/veiculo';
 import { JwtHelper } from "angular2-jwt";
+import { LocalNotifications } from "@ionic-native/local-notifications";
 
 @IonicPage()
 @Component({
@@ -30,6 +31,8 @@ export class HomePage {
     public view : ViewController,
     private toastCtrl: ToastController,
     private modalCtrl: ModalController,
+    private platform: Platform,
+    private localNotifications: LocalNotifications,
     private veiculoProvider : VeiculoProvider,
     private homeProvider: HomeProvider) {
 
@@ -50,6 +53,7 @@ export class HomePage {
                  this.getVeiculo(this.codigoUsuario);
              });
            }
+           this.sendNotification();
       });
   }
 
@@ -107,5 +111,17 @@ export class HomePage {
   acessarManutencao(manutencao){
     console.log("Manutencao - " + manutencao);
     this.navCtrl.push('CadastrarManutencaoPage', {'manutencao' : manutencao});
+  }
+
+  sendNotification(): void {
+    if(this.veiculoSelecionado != null){
+      this.platform.ready().then(() => {
+        this.localNotifications.schedule({
+          title: 'My title'
+          , text: 'My text'
+          , at: new Date(new Date().getTime() + 1000)
+        })
+      });
+    }
   }
 }
