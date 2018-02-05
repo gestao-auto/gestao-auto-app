@@ -42,7 +42,7 @@
         <ion-icon name="speedometer"></ion-icon>
         Hodometro realizado
       </ion-label>
-      <ion-input type="number" [(ngModel)]="manutencao.odometro"></ion-input>
+      <ion-input type="number" [(ngModel)]="manutencao.odometro" (keyup)="aplicarMascara('odometro', manutencao.odometro,'999999')"></ion-input>
     </ion-item>
     <ion-item *ngIf="manutencao.tipoManutencao == 'REVISAO'">
       <ion-label stacked>
@@ -75,7 +75,7 @@
         <ion-icon name="cash"></ion-icon>
         Franquia
       </ion-label>
-      <ion-input type="number" [(ngModel)]="manutencao.valorTotal" readonly></ion-input>
+      <ion-input type="number" [(ngModel)]="manutencao.valorTotal" readonly (keyup)="aplicarMascara('valorTotal', manutencao.valorTotal,'999999.99')"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label stacked>

@@ -16,9 +16,9 @@ export class Mask {
   EXEMPLO: ATZ-6369 (Máscara = AAA-9999);
 
   */
-  atualizarValor(valor : string, mascara : string){
+  public atualizarValor(valor : string, mascara : string){
     this.alphMasc = mascara.replace(/\W|_/g, '');
-    valor = valor.replace(/\W|_/g, '');
+    valor = (""+valor).replace(/\W|_/g, '');
     var i = valor.length > this.alphMasc.length ? this.alphMasc.length : valor.length;
     var novoValor = "";
     while(i > 0){

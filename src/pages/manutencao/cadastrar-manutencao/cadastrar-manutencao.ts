@@ -4,6 +4,7 @@ import { ViewController, ToastController } from 'ionic-angular';
 import { Storage } from "@ionic/storage";
 import { ManutencaoProvider } from '../../../providers/manutencao/manutencao';
 import { JwtHelper } from "angular2-jwt";
+import { Mask } from '../../../utils/mask/mask';
 
 @IonicPage()
 @Component({
@@ -21,7 +22,8 @@ export class CadastrarManutencaoPage {
     , private viewCtrl: ViewController
     , private storage : Storage
     , private manutencaoProvider: ManutencaoProvider
-    , private toastCtrl: ToastController) {
+    , private toastCtrl: ToastController
+    , private mask : Mask) {
       console.log('CadastrarManutencaoPage - ' + this.navParams.get('manutencao'));
 
       this.fixoRevisao = false;
@@ -57,6 +59,10 @@ export class CadastrarManutencaoPage {
 
   private isFixedRevision(){
     return this.manutencao != null && this.manutencao['tipoManutencao'] == 'REVISAO';
+  }
+
+  aplicarMascara(campo, valor, mascara) {
+    this.manutencao[campo] = this.mask.atualizarValor(valor,mascara);
   }
 
   salvar(){
