@@ -50,7 +50,7 @@
               <ion-icon name="warning"></ion-icon>
               {{manutencao.status}}
             </div>
-            <div class="secundario atrasado" *ngIf="manutencao.diasRestantes < 0 || manutencao.quilometrosRestantes < 0">
+            <div class="secundario atrasado" *ngIf="manutencao.diasRestantes <= 0 || manutencao.quilometrosRestantes <= 0">
               <ion-icon name="warning"></ion-icon>
               {{manutencao.status}}
             </div>
@@ -68,7 +68,7 @@
               <ion-icon name="speedometer"></ion-icon>
               {{manutencao.quilometrosRestantes}} km
             </div>
-            <div class="secundario atrasado" *ngIf="manutencao.quilometrosRestantes < 0">
+            <div class="secundario atrasado" *ngIf="manutencao.quilometrosRestantes <= 0">
               <ion-icon name="speedometer" atrasado></ion-icon>
               Há {{manutencao.quilometrosRestantes * (-1)}} km
             </div>
