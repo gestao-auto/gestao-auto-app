@@ -8,6 +8,7 @@ import { JwtHelper } from "angular2-jwt";
 import { Veiculo } from "../../model/veiculo";
 import { Modelo } from "../../model/modelo";
 import { Marca } from "../../model/marca";
+import { Mask } from '../../utils/mask/mask';
 
 @IonicPage()
 @Component({
@@ -28,7 +29,8 @@ export class EditarVeiculoPage {
     public storage: Storage,
     public toastCtrl : ToastController,
     public veiculoProvider : VeiculoProvider,
-    private propProvider: ProprietarioProvider
+    private propProvider: ProprietarioProvider,
+    private mask : Mask
   ) {
     this.veiculoEditar = new Veiculo(null, null, null, null, null, null, null, null, null, null, null, null);
     this.exibirDataAquisicaoPrimeiroDono = false;
@@ -45,6 +47,9 @@ export class EditarVeiculoPage {
       this.getProprietarioPorUsuario();
   }
 
+  aplicarMascaraPlaca(valor, mascara) {
+    this.veiculoEditar.placa = this.mask.atualizarValor(valor,mascara);
+  }
   getMarcas() {
     this.veiculoProvider.getMarcas()
       .then((marcas: Array<Marca>) => {

@@ -29,7 +29,7 @@
 
       <ion-item>
         <ion-label floating>Placas</ion-label>
-        <ion-input [(ngModel)]="veiculoEditar.placa" type="text" max="8"  mask="***-****"></ion-input>
+        <ion-input [(ngModel)]="veiculoEditar.placa" type="text" (keyup)="aplicarMascaraPlaca(veiculoEditar.placa,'AAA-9999')"></ion-input>
       </ion-item>
 
       <ion-item>
