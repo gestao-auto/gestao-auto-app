@@ -5,13 +5,13 @@ import { Storage } from "@ionic/storage";
 import { ManutencaoProvider } from '../../../providers/manutencao/manutencao';
 import { JwtHelper } from "angular2-jwt";
 
-
 @IonicPage()
 @Component({
   selector: 'page-cadastrar-manutencao',
   templateUrl: 'cadastrar-manutencao.html',
 })
 export class CadastrarManutencaoPage {
+  fixoRevisao : boolean;
   manutencao : any;
   codigoUsuario : string;
   jwtHelper = new JwtHelper();
@@ -24,18 +24,22 @@ export class CadastrarManutencaoPage {
     , private toastCtrl: ToastController) {
       console.log('CadastrarManutencaoPage - ' + this.navParams.get('manutencao'));
 
+      this.fixoRevisao = false;
       this.codigoUsuario = "";
+
       this.manutencao = this.navParams.get('manutencao');
+      this.manutencao = (this.manutencao == null) ? {} : this.manutencao;
+      this.fixoRevisao = this.isFixedRevision();
       if(this.fromHome()){
         console.log('CadastrarManutencaoPage - fromHome');
         this.manutencaoProvider.get(this.manutencao["codigo"])
           .then((manutencao: any) => {
             this.manutencao = (manutencao != null) ? manutencao : {};
+            this.fixoRevisao = this.isFixedRevision();
           }, (error) => {
-            this.mostrarToast("Ops! Não conseguimos recuperar suas informações. Por favor, tente novamente.");
+            this.tratarErro(error);
           })
       }
-      else this.manutencao = {};
 
       this.storage.get('token').then(
         token => {
@@ -47,12 +51,16 @@ export class CadastrarManutencaoPage {
     console.log('ionViewDidLoad CadastrarManutencaoPage');
   }
 
-  fromHome(){
-    return this.manutencao != null && this.manutencao.hasOwnProperty("diasRestantes");
+  private fromHome(){
+    return this.manutencao != null && this.manutencao.hasOwnProperty('diasRestantes');
+  }
+
+  private isFixedRevision(){
+    return this.manutencao != null && this.manutencao['tipoManutencao'] == 'REVISAO';
   }
 
   salvar(){
-    (this.manutencao["codigo"] != null && this.manutencao["codigo"] != "")
+    (this.manutencao['codigo'] != null && this.manutencao['codigo'] != "")
       ? this.alterar() : this.adicionar();
   }
 
@@ -63,8 +71,9 @@ export class CadastrarManutencaoPage {
         if (manutencao != null) {
           this.manutencao = manutencao;
         }
+        this.tratarSucesso();
       }, (error) => {
-        this.mostrarToast("Ops! Não conseguimos recuperar suas informações. Por favor, tente novamente.");
+        this.tratarErro(error);
       });
   }
 
@@ -75,18 +84,20 @@ export class CadastrarManutencaoPage {
         if (manutencao != null) {
           this.manutencao = manutencao;
         }
+        this.tratarSucesso();
       }, (error) => {
-        this.mostrarToast("Ops! Não conseguimos recuperar suas informações. Por favor, tente novamente.");
+        this.tratarErro(error);
       });
   }
 
   apagar() {
     this.manutencaoProvider.delete(this.manutencao)
       .then((manutencao: Array<any>) => {
-        console.log("CadastrarManutencaoPage -> apagar -> manutencao: " + manutencao.toString());
+        console.log("CadastrarManutencaoPage -> apagar -> manutencao");
+        this.tratarSucesso();
         this.navCtrl.pop();
       }, (error) => {
-        this.mostrarToast("Ops! Não conseguimos recuperar suas informações. Por favor, tente novamente.");
+        this.tratarErro(error);
       });
   }
 
@@ -95,11 +106,23 @@ export class CadastrarManutencaoPage {
     this.navCtrl.push('ListarItensPage', {'manutencao' : this.manutencao});
   }
 
-  mostrarToast(mensagem : string) {
+  tratarSucesso(){
+    this.mostrarToast('Sucesso!');
+  }
+
+  tratarErro(error){
+    (error.hasOwnProperty('error') && error.error.hasOwnProperty('message'))
+        ? this.mostrarToast(error.error.message, 'danger')
+          : this.mostrarToast('Ops! Não conseguimos recuperar suas informações. Por favor, tente novamente.', 'danger');
+  }
+
+  mostrarToast(mensagem : string, clazz? : string) {
+    let cssClass = (clazz == undefined) ? 'default' : clazz; 
     let toast = this.toastCtrl.create({
         message: mensagem,
         duration: 3000,
-        position: 'top'
+        position: 'top',
+        cssClass: cssClass
       });
     toast.present();
   }
