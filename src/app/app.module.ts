@@ -21,6 +21,7 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { IndicadorIndividualProvider } from '../providers/indicador-individual/indicador-individual';
 import { BaseChartDirective } from 'ng2-charts';
 import { LocalNotifications } from '@ionic-native/local-notifications';
+import { Mask } from '../utils/mask/mask';
 
 /*
 --Instalar notificação
@@ -68,7 +69,8 @@ var config={
     PreferenciasProvider,
     VeiculoProvider,
     HomeProvider,
-    IndicadorIndividualProvider
+    IndicadorIndividualProvider,
+    Mask
   ]
 })
 export class AppModule {}
