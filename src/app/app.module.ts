@@ -23,17 +23,6 @@ import { BaseChartDirective } from 'ng2-charts';
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { Mask } from '../utils/mask/mask';
 
-/*
---Instalar notificação
-ionic cordova plugin add cordova-plugin-local-notification
-npm install --save @ionic-native/local-notifications
-
---Teoricamente, roda no browser com capacidades de mobile
-ionic cordova platform add browser
-ionic build browser
-ionic cordova run browser
-*/
-
 var config={
       backButtonText: '',
       iconMode: 'md',
