@@ -53,6 +53,7 @@ export class HomePage {
                  this.getVeiculo(this.codigoUsuario);
              });
            }
+           this.sendNotification();
       });
   }
 
@@ -110,5 +111,17 @@ export class HomePage {
   acessarManutencao(manutencao){
     console.log("Manutencao - " + manutencao);
     this.navCtrl.push('CadastrarManutencaoPage', {'manutencao' : manutencao});
+  }
+
+  sendNotification(): void {
+    if(this.veiculoSelecionado != null){
+      this.platform.ready().then(() => {
+        this.localNotifications.schedule({
+          title: 'My title'
+          , text: 'My text'
+          , at: new Date(new Date().getTime() + 1000)
+        })
+      });
+    }
   }
 }
