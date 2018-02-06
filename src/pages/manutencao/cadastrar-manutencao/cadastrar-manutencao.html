@@ -8,79 +8,68 @@
 
 
 <ion-content>
-  <ion-input type="hidden" [(ngModel)]="manutencao.codigoVeiculo" ></ion-input>
   <ion-list>
     <ion-item>
       <ion-label stacked>
         <ion-icon name="list-box" *ngIf="manutencao.tipoManutencao == 'REVISAO'"></ion-icon>
-        <ion-icon name="construct" *ngIf="manutencao.tipoManutencao == 'REPARO'"></ion-icon>
-        <ion-icon name="warning" *ngIf="manutencao.tipoManutencao == 'SINISTRO'"></ion-icon>
+        <ion-icon name="construct" *ngIf="manutencao.tipoManutencao != 'REVISAO'"></ion-icon>
         Tipo
       </ion-label>
-      <ion-select [(ngModel)]="manutencao.tipoManutencao">
-        <ion-option value="REPARO" *ngIf="!fixoRevisao">Reparo</ion-option>
-        <ion-option value="SINISTRO" *ngIf="!fixoRevisao">Sinistro</ion-option>
-        <ion-option value="REVISAO">Revis\u00E3o</ion-option>
-      </ion-select>
+      <ion-input type="text" [(ngModel)]="manutencao.tipoManutencao"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label stacked>
         <ion-icon name="paper"></ion-icon>
-        Identifica\u00E7\u00E3o
+        Identificação
       </ion-label>
       <ion-input type="text" [(ngModel)]="manutencao.descricao"></ion-input>
     </ion-item>
-    <ion-item *ngIf="manutencao.tipoManutencao == 'REVISAO'">
+    <ion-item>
       <ion-label stacked>
         <ion-icon name="speedometer"></ion-icon>
         Hodometro previsto
       </ion-label>
-      <ion-input type="number" [(ngModel)]="manutencao.odometroPrevisto" readonly></ion-input>
+      <ion-input type="number" [(ngModel)]="manutencao.odometroPrevisto"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label stacked>
         <ion-icon name="speedometer"></ion-icon>
         Hodometro realizado
       </ion-label>
-      <ion-input type="number" [(ngModel)]="manutencao.odometro" (keyup)="aplicarMascara('odometro', manutencao.odometro,'999999')"></ion-input>
+      <ion-input type="number" [(ngModel)]="manutencao.odometro"></ion-input>
     </ion-item>
-    <ion-item *ngIf="manutencao.tipoManutencao == 'REVISAO'">
+    <ion-item>
       <ion-label stacked>
         <ion-icon name="calendar"></ion-icon>
         Data prevista
       </ion-label>
-      <ion-input [(ngModel)]="manutencao.dataPrevista" readonly></ion-input>
+      <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="manutencao.dataPrevista"></ion-datetime>
     </ion-item>
     <ion-item>
       <ion-label stacked>
         <ion-icon name="calendar"></ion-icon>
         Data realizada
       </ion-label>
-      <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="manutencao.data" *ngIf="manutencao.status != 'REALIZADA'"></ion-datetime>
-      <ion-input [(ngModel)]="manutencao.data" readonly *ngIf="manutencao.status == 'REALIZADA'"></ion-input>
+      <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="manutencao.data"></ion-datetime>
     </ion-item>
     <ion-item>
       <ion-label stacked>
         <ion-icon name="contact"></ion-icon>
         Oficina
       </ion-label>
-      <ion-input type="text" [(ngModel)]="manutencao.nomeReparador"></ion-input>
+      <ion-input type="text" [(ngModel)]="manutencao.codigoReparador"></ion-input>
     </ion-item>
-    <ion-item *ngIf="manutencao.codigo != null || (manutencao.itemManutencaoList != null && manutencao.itemManutencaoList.length > 0)">
-      <ion-label stacked *ngIf="manutencao.tipoManutencao != 'SINISTRO'">
+    <ion-item>
+      <ion-label stacked>
         <ion-icon name="cash"></ion-icon>
         Valor total
       </ion-label>
-      <ion-label stacked *ngIf="manutencao.tipoManutencao == 'SINISTRO'">
-        <ion-icon name="cash"></ion-icon>
-        Franquia
-      </ion-label>
-      <ion-input type="number" [(ngModel)]="manutencao.valorTotal" readonly (keyup)="aplicarMascara('valorTotal', manutencao.valorTotal,'999999.99')"></ion-input>
+      <ion-input type="number" [(ngModel)]="manutencao.valorTotal"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label stacked>
         <ion-icon name="text"></ion-icon>
-        Observa\u00E7\u00E3o
+        Observação
       </ion-label>
       <ion-input type="text" [(ngModel)]="manutencao.motivo"></ion-input>
     </ion-item>

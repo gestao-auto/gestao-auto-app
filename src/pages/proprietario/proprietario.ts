@@ -7,7 +7,6 @@ import { UsuarioProvider } from '../../providers/usuario/usuario';
 import { Proprietario } from '../../model/proprietario';
 import { JwtHelper } from "angular2-jwt";
 import { ToastController } from 'ionic-angular';
-import { Mask } from '../../utils/mask/mask';
 
 @IonicPage()
 @Component({
@@ -19,7 +18,6 @@ export class ProprietarioPage {
   proprietario : Proprietario;
   codigoUsuario : number;
   jwtHelper = new JwtHelper();
-  amount : string;
 
   constructor(
     public navCtrl: NavController,
@@ -27,8 +25,7 @@ export class ProprietarioPage {
     public storage : Storage,
     public view : ViewController,
     private toastCtrl: ToastController,
-    private propProvider: ProprietarioProvider,
-    private mask : Mask) {
+    private propProvider: ProprietarioProvider) {
 
     this.codigoUsuario = null;
     this.proprietario = new Proprietario(null, null, null, null, null, null, null);
@@ -39,9 +36,7 @@ export class ProprietarioPage {
            this.get();
          });
     }
-    mudarValor() {
-      this.amount = this.mask.gerarValorMonetario(this.amount);
-    }
+
   get() {
     this.propProvider.get(this.codigoUsuario)
       .then((proprietario: Proprietario) => {

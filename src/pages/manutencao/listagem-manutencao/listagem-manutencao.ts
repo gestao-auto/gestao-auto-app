@@ -39,12 +39,6 @@ export class ListagemManutencaoPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad ListagemManutencaoPage');
   }
-  ionViewWillEnter() {
-    console.log('ionViewWillEnter ListagemManutencaoPage');
-    if(this.manutencoes != null){
-      this.get();
-    }
-  }
 
   get() {
     this.manutencaoProvider.getByVehicle(this.veiculoSelecionado.codigo)
@@ -69,7 +63,7 @@ export class ListagemManutencaoPage {
   }
 
   addManutencao(){
-    this.acessarManutencao({'codigoVeiculo': this.veiculoSelecionado.codigo});
+    this.navCtrl.push('CadastrarManutencaoPage');
   }
 
   mostrarToast(mensagem : string) {
