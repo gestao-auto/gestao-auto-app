@@ -21,6 +21,10 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { IndicadorIndividualProvider } from '../providers/indicador-individual/indicador-individual';
 import { BaseChartDirective } from 'ng2-charts';
 import { LocalNotifications } from '@ionic-native/local-notifications';
+import { NotificacaoProvider } from '../providers/notificacao/notificacao';
+import { BackgroundMode } from '@ionic-native/background-mode';
+
+
 import { Mask } from '../utils/mask/mask';
 
 var config={
@@ -59,6 +63,8 @@ var config={
     VeiculoProvider,
     HomeProvider,
     IndicadorIndividualProvider,
+    NotificacaoProvider,
+    BackgroundMode,
     Mask
   ]
 })

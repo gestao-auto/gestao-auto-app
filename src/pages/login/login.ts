@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
 import { AuthenticationProvider } from '../../providers/authentication/authentication';
+import { NotificacaoProvider } from '../../providers/notificacao/notificacao';
 import { Storage } from "@ionic/storage";
 import { ToastController } from 'ionic-angular';
 import { HttpErrorResponse } from '@angular/common/http';
+
 
 @IonicPage()
 @Component({
@@ -18,7 +20,8 @@ export class LoginPage {
     public menuCtrl: MenuController,
     private authProvider: AuthenticationProvider,
     private storage: Storage,
-    private toastCtrl: ToastController
+    private toastCtrl: ToastController,
+    private notificacaoProvider : NotificacaoProvider
  ) {
      this.menuCtrl.swipeEnable(false);
      storage.ready().then(() => {
@@ -30,10 +33,9 @@ export class LoginPage {
      storage.remove('errorMessage');
    }
 
-
-  logar(credenciais){
+  logar(credenciais) {
     this.authProvider.login(credenciais).subscribe(
-        data => this.authSuccess(data),
+        data =>  this.authSuccess(data),
         (err: HttpErrorResponse) => {
           this.authError(err)
         }
@@ -41,9 +43,11 @@ export class LoginPage {
   }
 
   authSuccess(token) {
+    console.log("Token ao logar: " + token);
     this.storage.set('token', token).then((val) => {
-      this.navCtrl.push('HomePage');
-    });  
+    this.notificacaoProvider.createObservador();
+    this.navCtrl.push('HomePage');
+    });
   }
 
   authError(err){

@@ -6,7 +6,7 @@ import { AuthenticationProvider } from '../providers/authentication/authenticati
 import { ProprietarioProvider } from '../providers/proprietario/proprietario';
 import { ManutencaoProvider } from '../providers/manutencao/manutencao';
 import { IndicadorIndividualProvider } from '../providers/indicador-individual/indicador-individual';
-
+import { BackgroundMode } from '@ionic-native/background-mode';
 
 @Component({
   templateUrl: 'app.html'
@@ -25,7 +25,8 @@ export class MyApp {
     public platform: Platform,
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
-    private authProvider: AuthenticationProvider
+    private authProvider: AuthenticationProvider,
+    private backgroundMode : BackgroundMode
   ) {
     this.initializeApp();
 
@@ -37,26 +38,27 @@ export class MyApp {
       { title: 'Manuten\u00E7\u00F5es', component: 'ListagemManutencaoPage', icon:'construct' },
       { title: 'Relatórios', component: 'RelatorioGastoIndividualManutencaoPage', icon:'book' },
       { title: 'Preferências de notificação', component: 'PreferenciasPage', icon:'notifications' },
-      { title: 'Sair', component: 'LoginPage', icon:'log-out' },
-      { title: 'Nofificacao', component: 'NotificacaoPage', icon:'notifications' }
+      { title: 'Sair', component: 'LoginPage', icon:'log-out' }
     ];
 
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      //this.backgroundMode.enable();
     });
   }
+
   openPage(page) {
-  if (page.title == 'Sair'){
-    this.authProvider.logout();
+    if (page.title == 'Sair'){
+      this.authProvider.logout();
+      //this.backgroundMode.disable();
+    }
+    this.nav.setRoot(page.component);
   }
-  this.nav.setRoot(page.component);
-  }
+
   activeItem(index){
       this.itemindex=index;
       this.headerTitle=this.pages[index].title;
