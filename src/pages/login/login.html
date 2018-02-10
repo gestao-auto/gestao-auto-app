@@ -7,7 +7,7 @@
             </ion-col>
         </ion-row>
     </div>
-    <form #loginForm="ngForm" (ngSubmit)="logar(loginForm.value)">
+    <form #loginForm="ngForm" >
       <div  class="app_form" margin-top>
         <h3 text-uppercase style="text-align:center">Gestão Auto</h3>
 
@@ -21,7 +21,7 @@
           </ion-list>
 
           <button class="forgot-psw" (click)="forgotPassword()" ion-button clear small>Esqueci minha senha</button>
-          <button ion-button block color="primary" type="submit">Login</button>
+          <button ion-button block color="primary" (click)="logar(loginForm.value)">Login</button>
 
           <p [navPush]="'RegistroPage'" text-center>Novo aqui? Se cadastre!</p>
       </div>

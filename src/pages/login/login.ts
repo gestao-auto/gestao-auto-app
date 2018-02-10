@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController, AlertController } from 'ionic-angular';
 import { AuthenticationProvider } from '../../providers/authentication/authentication';
 import { Storage } from "@ionic/storage";
 import { ToastController } from 'ionic-angular';
@@ -18,7 +18,8 @@ export class LoginPage {
     public menuCtrl: MenuController,
     private authProvider: AuthenticationProvider,
     private storage: Storage,
-    private toastCtrl: ToastController
+    private toastCtrl: ToastController,
+    private alertCtrl: AlertController
  ) {
      this.menuCtrl.swipeEnable(false);
      storage.ready().then(() => {
@@ -43,7 +44,7 @@ export class LoginPage {
   authSuccess(token) {
     this.storage.set('token', token).then((val) => {
       this.navCtrl.push('HomePage');
-    });  
+    });
   }
 
   authError(err){
@@ -54,7 +55,7 @@ export class LoginPage {
       if(err.status == '401'){
         errorMessage = 'Usuário ou senha inválidos!'
       }else{
-        errorMessage ='Erro '+ err.status +': '+ err.error;
+        errorMessage ="Ops! Não conseguimos recuperar suas informações. Tente novamente mais tarde.";
       }
     }
     console.log(errorMessage);
@@ -68,5 +69,33 @@ export class LoginPage {
       position: 'top'
     });
     toast.present();
+  }
+
+  forgotPassword() {
+    let forgotpas = this.alertCtrl.create({
+      title: 'Esqueci minha senha',
+      message: "Digite seu endereço de e-mail e nós o ajudaremos a redefinir sua senha",
+      inputs: [
+        {
+          name: 'email',
+          placeholder: 'E-mail'
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancelar',
+          handler: data => {
+            console.log('Cancelado');
+          }
+        },
+        {
+          text: 'Enviar',
+          handler: data => {
+            console.log('Solicitado');
+          }
+        }
+      ]
+    });
+    forgotpas.present();
   }
 }

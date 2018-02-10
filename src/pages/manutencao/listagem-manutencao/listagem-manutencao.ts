@@ -31,8 +31,15 @@ export class ListagemManutencaoPage {
 
     this.storage.get('veiculo').then(
       veiculo => {
-        this.veiculoSelecionado = (veiculo == null) ? this.veiculoSelecionado : veiculo;
-        this.get();
+        if(veiculo == null){
+          this.veiculoSelecionado = (veiculo == null) ? this.veiculoSelecionado : veiculo;
+          this.mostrarToast("Não há veículos cadastrados, cadastre um veículo antes de prosseguir.");
+        } else {
+          this.veiculoSelecionado = veiculo;
+          this.get();
+        }
+
+
     });
   }
 
@@ -41,7 +48,7 @@ export class ListagemManutencaoPage {
   }
   ionViewWillEnter() {
     console.log('ionViewWillEnter ListagemManutencaoPage');
-    if(this.manutencoes != null){
+    if(this.manutencoes != null && this.veiculoSelecionado.codigo != 0){
       this.get();
     }
   }
@@ -49,12 +56,12 @@ export class ListagemManutencaoPage {
   get() {
     this.manutencaoProvider.getByVehicle(this.veiculoSelecionado.codigo)
       .then((manutencoes: Array<any>) => {
-        console.log("ManutencaoPage -> get -> manutencoes: " + manutencoes.toString());
         if (manutencoes != null) {
           this.manutencoes = manutencoes;
         }
       }, (error) => {
-        this.mostrarToast("Ops! Não conseguimos recuperar suas informações. Por favor, tente novamente.");
+          console.log(error);
+            this.mostrarToast("Ops! Não conseguimos recuperar suas informações. Por favor, tente novamente.");
       });
   }
 

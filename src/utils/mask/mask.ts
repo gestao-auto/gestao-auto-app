@@ -42,6 +42,7 @@ export class Mask {
     }
     return " ";
   }
+  
   private aplicarMascara(valor : string, mascara : string){
     var contSeparador = 0;
     var MAX =  valor.length;

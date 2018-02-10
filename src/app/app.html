@@ -14,7 +14,7 @@
 
   <ion-content>
     <ion-list>
-      <button ion-item menuClose *ngFor="let p of pages; let i = index" (click)="openPage(p);activeItem(i)"[ngClass]="{'active_item':itemindex==i}" >
+      <button ion-item menuClose *ngFor="let p of pages; let i = index" (click)="openPage(p);activeItem(i)" [ngClass]="{'active_item':itemindex==i}" >
         <ion-icon name="{{p.icon}}">&nbsp;&nbsp;</ion-icon>{{p.title}}
       </button>
     </ion-list>

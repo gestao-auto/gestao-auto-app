@@ -22,6 +22,7 @@ import { IndicadorIndividualProvider } from '../providers/indicador-individual/i
 import { BaseChartDirective } from 'ng2-charts';
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { Mask } from '../utils/mask/mask';
+import { OficinaProvider } from '../providers/oficina/oficina';
 
 var config={
       backButtonText: '',
@@ -59,7 +60,8 @@ var config={
     VeiculoProvider,
     HomeProvider,
     IndicadorIndividualProvider,
-    Mask
+    Mask,
+    OficinaProvider
   ]
 })
 export class AppModule {}

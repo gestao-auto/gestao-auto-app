@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { ViewController, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Modal, ModalController, ViewController, ToastController } from 'ionic-angular';
 import { Storage } from "@ionic/storage";
 import { ManutencaoProvider } from '../../../providers/manutencao/manutencao';
 import { JwtHelper } from "angular2-jwt";
 import { Mask } from '../../../utils/mask/mask';
+import { Reparador } from '../../../model/reparador';
+import { Manutencao } from '../../../model/manutencao';
 
 @IonicPage()
 @Component({
@@ -16,14 +17,16 @@ export class CadastrarManutencaoPage {
   manutencao : any;
   codigoUsuario : string;
   jwtHelper = new JwtHelper();
-
-  constructor(private navCtrl: NavController
-    , private navParams: NavParams
-    , private viewCtrl: ViewController
-    , private storage : Storage
-    , private manutencaoProvider: ManutencaoProvider
-    , private toastCtrl: ToastController
-    , private mask : Mask) {
+  nomeReparador: string;
+  constructor(
+    private navCtrl: NavController,
+    private navParams: NavParams,
+    private viewCtrl: ViewController,
+    private storage : Storage,
+    private manutencaoProvider: ManutencaoProvider,
+    private toastCtrl: ToastController,
+    private modalCtrl: ModalController,
+    private mask : Mask) {
       console.log('CadastrarManutencaoPage - ' + this.navParams.get('manutencao'));
 
       this.fixoRevisao = false;
@@ -122,8 +125,19 @@ export class CadastrarManutencaoPage {
           : this.mostrarToast('Ops! Não conseguimos recuperar suas informações. Por favor, tente novamente.', 'danger');
   }
 
+  selecionarReparador(){
+    let modal: Modal = this.modalCtrl.create('BuscarOficinaPage', {'veiculoAtual': this.manutencao.nomeReparador});
+    modal.present();
+    modal.onWillDismiss((data) => {
+      if(data){
+        this.manutencao.codigoReparador = data.codigoReparador;
+        this.manutencao.nomeReparador = data.nomefantasia;
+      }
+    });
+  }
+
   mostrarToast(mensagem : string, clazz? : string) {
-    let cssClass = (clazz == undefined) ? 'default' : clazz; 
+    let cssClass = (clazz == undefined) ? 'default' : clazz;
     let toast = this.toastCtrl.create({
         message: mensagem,
         duration: 3000,

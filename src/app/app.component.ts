@@ -38,7 +38,8 @@ export class MyApp {
       { title: 'Relatórios', component: 'RelatorioGastoIndividualManutencaoPage', icon:'book' },
       { title: 'Preferências de notificação', component: 'PreferenciasPage', icon:'notifications' },
       { title: 'Sair', component: 'LoginPage', icon:'log-out' },
-      { title: 'Nofificacao', component: 'NotificacaoPage', icon:'notifications' }
+      { title: 'Nofificacao', component: 'NotificacaoPage', icon:'notifications' },
+      { title: 'Teste', component: 'BuscarOficinaPage', icon:'notifications' },
     ];
 
   }

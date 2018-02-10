@@ -64,7 +64,7 @@
         <ion-icon name="contact"></ion-icon>
         Oficina
       </ion-label>
-      <ion-input type="text" [(ngModel)]="manutencao.nomeReparador"></ion-input>
+      <ion-input type="text" [(ngModel)]="manutencao.nomeReparador" disabled="true" (click)="selecionarReparador()"></ion-input>
     </ion-item>
     <ion-item *ngIf="manutencao.codigo != null || (manutencao.itemManutencaoList != null && manutencao.itemManutencaoList.length > 0)">
       <ion-label stacked *ngIf="manutencao.tipoManutencao != 'SINISTRO'">

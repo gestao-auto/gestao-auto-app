@@ -32,7 +32,7 @@ export class EditarVeiculoPage {
     private propProvider: ProprietarioProvider,
     private mask : Mask
   ) {
-    this.veiculoEditar = new Veiculo(null, null, null, null, null, null, null, null, null, null, null, null);
+    this.veiculoEditar = new Veiculo(null, null, null, null, null, null, null, null, null, null, null, false);
     this.exibirDataAquisicaoPrimeiroDono = false;
     this.storage.get('veiculoEditar').then(
       veiculo => {
