@@ -6,10 +6,12 @@ import { HomeProvider } from '../../providers/home/home';
 import { Modal, ModalController } from 'ionic-angular';
 import { HomeManutencao } from '../../model/homeManutencao';
 import { Veiculo } from '../../model/veiculo';
+
 import { ToastController } from 'ionic-angular';
 import { VeiculoProvider} from '../../providers/veiculo/veiculo';
+import { NotificacaoProvider } from '../../providers/notificacao/notificacao';
 import { JwtHelper } from "angular2-jwt";
-import { LocalNotifications } from "@ionic-native/local-notifications";
+
 
 @IonicPage()
 @Component({
@@ -22,6 +24,7 @@ export class HomePage {
   codigoUsuario : number;
   codigoVeiculo : number;
   veiculoSelecionado : any;
+  // notificacoesPendente : Array<Notificacao>;
   jwtHelper = new JwtHelper();
 
   constructor(
@@ -32,12 +35,15 @@ export class HomePage {
     private toastCtrl: ToastController,
     private modalCtrl: ModalController,
     private platform: Platform,
-    private localNotifications: LocalNotifications,
     private veiculoProvider : VeiculoProvider,
-    private homeProvider: HomeProvider) {
+    private homeProvider: HomeProvider,
+    private notificacaoProvider : NotificacaoProvider,
+    ) {
 
       this.manutencao = new HomeManutencao(null, null, null, null, null, null, null, null, null);
       this.veiculoSelecionado = {'codigo' : 0, 'nome': "Sem veículo"};
+      //this.notificacoesPendente = [];
+      this.codigoUsuario = null;
 
       // Recupera o veículo selecionado
       this.storage.get('veiculo').then(
@@ -86,8 +92,6 @@ export class HomePage {
         })
   }
 
-  submit() {}
-
   mostrarToast(mensagem : string) {
     let toast = this.toastCtrl.create({
         message: mensagem,
@@ -111,4 +115,26 @@ export class HomePage {
     console.log("Manutencao - " + manutencao);
     this.navCtrl.push('CadastrarManutencaoPage', {'manutencao' : manutencao});
   }
+
+  // notificar() {
+  //   this.notificacaoProvider.getNotificacoesPendentesDoUsuarioLogado()
+  //     .then((notificacoes : Array<Notificacao>) => {
+  //       if (notificacoes != null) {
+  //           this.notificacoesPendente = notificacoes;
+  //           console.log("Notificações recebidas: ", this.notificacoesPendente);
+  //           this.gerarNotificacoes();
+  //       }
+  //     });
+  // }
+  //
+  // gerarNotificacoes() {
+  //   for (let i = 0; i < this.notificacoesPendente.length; i++) {
+  //       this.localNotifications.schedule({
+  //         id : this.notificacoesPendente[i].codigo,
+  //         title : this.notificacoesPendente[i].tipoNotificacao,
+  //         text: this.notificacoesPendente[i].mensagem,
+  //         at: new Date(new Date().getTime() + 5 * 1000),
+  //       });
+  //   }
+  // }
 }
