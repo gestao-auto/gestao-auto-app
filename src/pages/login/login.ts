@@ -44,7 +44,6 @@ export class LoginPage {
   }
 
   authSuccess(token) {
-    console.log("Token ao logar: " + token);
     this.storage.set('token', token).then((val) => {
       this.notificacaoProvider.createObservador();
       this.navCtrl.push('HomePage');

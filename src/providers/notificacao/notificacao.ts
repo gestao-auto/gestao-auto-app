@@ -47,13 +47,15 @@ export class NotificacaoProvider {
 
   //TODO: remover o mostrarToast pois o modo debugger não permite a visualização do LocalNotification
   notificar(notificaoes : Array<Notificacao>) {
-    for (let i = 0; i < notificaoes.length; i++) {
-        this.mostrarToast(notificaoes[0].mensagem);
-        this.localNotifications.schedule({
-          id : notificaoes[i].codigo,
-          title : notificaoes[i].tipoNotificacao,
-          text: notificaoes[i].mensagem
-        });
+    if(notificaoes){
+      for (let i = 0; i < notificaoes.length; i++) {
+          this.mostrarToast(notificaoes[0].mensagem);
+          this.localNotifications.schedule({
+            id : notificaoes[i].codigo,
+            title : notificaoes[i].tipoNotificacao,
+            text: notificaoes[i].mensagem
+          });
+      }
     }
   }
 

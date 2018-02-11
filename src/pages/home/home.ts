@@ -66,7 +66,7 @@ export class HomePage {
     this.veiculoProvider.getByUser(usuario)
       .then((veiculos : Array<Veiculo>) => {
         if (veiculos.length > 0) {
-          this.veiculoSelecionado = {'codigo': veiculos[0].codigo, 'nome': veiculos[0].nome};
+          this.veiculoSelecionado = {'codigo': veiculos[0].codigo, 'nome': veiculos[0].nome,'modalidade': veiculos[0].modalidade};
           this.storage.set("veiculo", this.veiculoSelecionado).then((val) => {
             this.get();
           });

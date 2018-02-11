@@ -54,7 +54,7 @@ export class SelecionarVeiculoPage {
   }
 
   selecionar(veiculo) {
-    this.storage.set("veiculo", {'codigo': veiculo.codigo, 'nome': veiculo.nome}).then((val) => {
+    this.storage.set("veiculo", {'codigo': veiculo.codigo, 'nome': veiculo.nome,'modalidade': veiculo.modalidade}).then((val) => {
       this.viewCtrl.dismiss(veiculo);
     });
   }

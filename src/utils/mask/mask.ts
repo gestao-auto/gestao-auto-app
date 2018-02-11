@@ -42,7 +42,7 @@ export class Mask {
     }
     return " ";
   }
-  
+
   private aplicarMascara(valor : string, mascara : string){
     var contSeparador = 0;
     var MAX =  valor.length;
@@ -97,5 +97,13 @@ export class Mask {
       a = "0" + a;
     }
     return (a);
+  }
+
+  public converterParaNumero(num: string) : number{
+    var novoValor = num.replace(/\D/g, '');
+    var inteiro = novoValor.substring(0, this.len - 2);
+    var decimal = novoValor.substring(this.len - 2, this.len);
+    var novoValor = inteiro+ '.'+decimal;
+    return Number(novoValor);
   }
 }

@@ -42,10 +42,7 @@ export class ListagemManutencaoPage {
 
     });
   }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ListagemManutencaoPage');
-  }
+  
   ionViewWillEnter() {
     console.log('ionViewWillEnter ListagemManutencaoPage');
     if(this.manutencoes != null && this.veiculoSelecionado.codigo != 0){
@@ -76,7 +73,11 @@ export class ListagemManutencaoPage {
   }
 
   addManutencao(){
-    this.acessarManutencao({'codigoVeiculo': this.veiculoSelecionado.codigo});
+    if(this.veiculoSelecionado.codigo!= 0){
+      this.acessarManutencao({'codigoVeiculo': this.veiculoSelecionado.codigo});
+    }else{
+      this.mostrarToast("Não há veículos cadastrados, cadastre um veículo antes de prosseguir.");
+    }
   }
 
   mostrarToast(mensagem : string) {

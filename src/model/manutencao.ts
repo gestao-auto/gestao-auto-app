@@ -15,6 +15,6 @@ export class Manutencao {
         public dataPrevista: string,
         public odometroPrevisto: number,
         public motivo: string,
-        public itemManutencao: Array<ItemManutencao>
+        public itensManutencao: Array<ItemManutencao>
     ) {}
 }
