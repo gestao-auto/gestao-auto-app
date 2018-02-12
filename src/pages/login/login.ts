@@ -45,7 +45,7 @@ export class LoginPage {
 
   authSuccess(token) {
     this.storage.set('token', token).then((val) => {
-      this.notificacaoProvider.createObservador();
+      this.notificacaoProvider.createObservador(token);
       this.navCtrl.push('HomePage');
     });
   }

@@ -13,32 +13,22 @@ const URL: string = "http://localhost:8080/gestaoAuto/api/rest/notificacao/ler/u
 @Injectable()
 export class NotificacaoProvider {
 
-  codigoUsuario : number;
   jwtHelper = new JwtHelper();
 
   contentHeader = new HttpHeaders({"Content-Type": "application/json"});
   constructor(public http: HttpClient, private storage : Storage, private localNotifications : LocalNotifications, private toastCtrl: ToastController) {
-    this.codigoUsuario = 0;
-    this.storage.get('token').then(
-      token => {
-        if (token != null) {
-            this.codigoUsuario = this.jwtHelper.decodeToken(token).sub;
-        }
-    });
   }
 
-  get(): Observable<Array<Notificacao>> {
-    if (this.codigoUsuario == 0) {
-      return null;
-    }
-    return this.http.get<Array<Notificacao>>(URL + this.codigoUsuario.toString());
+  get(codigoUsuario): Observable<Array<Notificacao>> {
+    return this.http.get<Array<Notificacao>>(URL + codigoUsuario.toString());
   }
 
   // Notificações
-  createObservador() {
+  createObservador(token) {
     TimerObservable.create(0, 60 * 1000)
        .subscribe(() => {
-         this.get()
+         let codigoUsuario = this.jwtHelper.decodeToken(token).sub;
+         this.get(codigoUsuario)
            .subscribe((data) => {
              this.notificar(data);
            });
