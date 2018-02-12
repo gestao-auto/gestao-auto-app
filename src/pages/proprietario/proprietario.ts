@@ -19,7 +19,6 @@ export class ProprietarioPage {
   proprietario : Proprietario;
   codigoUsuario : number;
   jwtHelper = new JwtHelper();
-  amount : string;
 
   constructor(
     public navCtrl: NavController,
@@ -35,12 +34,10 @@ export class ProprietarioPage {
 
     this.storage.get('token').then(
          token => {
+           console.log("token prop", token);
            this.codigoUsuario = this.jwtHelper.decodeToken(token).sub;
            this.get();
          });
-    }
-    mudarValor() {
-      this.amount = this.mask.gerarValorMonetario(this.amount);
     }
   get() {
     this.propProvider.get(this.codigoUsuario)

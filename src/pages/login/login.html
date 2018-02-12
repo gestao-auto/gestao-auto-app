@@ -13,14 +13,14 @@
 
           <ion-list no-margin>
               <ion-item no-lines>
-                  <ion-input type="text" name="usuario" placeholder="Usuario" ngModel></ion-input>
+                  <ion-input type="text" name="usuario" placeholder="E-mail" ngModel></ion-input>
               </ion-item>
               <ion-item no-lines>
                   <ion-input type="password" name="senha" placeholder="Senha" ngModel></ion-input>
               </ion-item>
           </ion-list>
 
-          <button class="forgot-psw" (click)="forgotPassword()" ion-button clear small>Esqueci minha senha</button>
+          <!-- <button class="forgot-psw" (click)="forgotPassword()" ion-button clear small>Esqueci minha senha</button> -->
           <button ion-button block color="primary" (click)="logar(loginForm.value)">Login</button>
 
           <p [navPush]="'RegistroPage'" text-center>Novo aqui? Se cadastre!</p>
