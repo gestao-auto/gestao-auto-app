@@ -16,10 +16,10 @@ import { PecaServicoProvider } from '../../../providers/peca-servico/peca-servic
   templateUrl: 'cadastrar-manutencao.html',
 })
 export class CadastrarManutencaoPage {
-  veiculoSelecionado : any;
-  fixoRevisao : boolean;
-  manutencao : Manutencao;
-  codigoUsuario : string;
+  veiculoSelecionado: any;
+  fixoRevisao: boolean;
+  manutencao: Manutencao;
+  codigoUsuario: string;
   jwtHelper = new JwtHelper();
   nomeReparador: string;
   listaPecas: Array<PecaServico>;
@@ -28,61 +28,61 @@ export class CadastrarManutencaoPage {
     private navCtrl: NavController,
     private navParams: NavParams,
     private viewCtrl: ViewController,
-    private storage : Storage,
+    private storage: Storage,
     private manutencaoProvider: ManutencaoProvider,
     private psProvider: PecaServicoProvider,
     private toastCtrl: ToastController,
     private modalCtrl: ModalController,
-    private mask : Mask) {
-      console.log('CadastrarManutencaoPage - ' + this.navParams.get('manutencao'));
-      this.getPecasServicos();
-      this.fixoRevisao = false;
-      this.codigoUsuario = "";
+    private mask: Mask) {
+    console.log('CadastrarManutencaoPage - ' + this.navParams.get('manutencao'));
+    this.getPecasServicos();
+    this.fixoRevisao = false;
+    this.codigoUsuario = "";
 
-      this.manutencao = this.navParams.get('manutencao');
-      this.manutencao = (this.manutencao == null) ? new Manutencao(null,null,null,null,null,null,null,null,null,null,null,null,null,null) : this.manutencao;
-      this.fixoRevisao = this.isFixedRevision();
-      if(this.fromHome()){
-        console.log('CadastrarManutencaoPage - fromHome');
-        this.manutencaoProvider.get(this.manutencao.codigo)
-          .then((manutencao: Manutencao) => {
-            this.manutencao = (manutencao != null) ? manutencao : new Manutencao(null,null,null,null,null,null,null,null,null,null,null,null,null,null);
-            this.fixoRevisao = this.isFixedRevision();
-          }, (error) => {
-            this.tratarErro(error);
-          })
-      }
-      this.manutencao.itensManutencao = Array<ItemManutencao>();
-      this.storage.get('token').then(
-        token => {
-          this.codigoUsuario = this.jwtHelper.decodeToken(token).sub;
+    this.manutencao = this.navParams.get('manutencao');
+    this.manutencao = (this.manutencao == null) ? new Manutencao(null, null, null, null, null, null, null, null, null, null, null, null, null, null) : this.manutencao;
+    this.fixoRevisao = this.isFixedRevision();
+    if (this.fromHome()) {
+      console.log('CadastrarManutencaoPage - fromHome');
+      this.manutencaoProvider.get(this.manutencao.codigo)
+        .then((manutencao: Manutencao) => {
+          this.manutencao = (manutencao != null) ? manutencao : new Manutencao(null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+          this.fixoRevisao = this.isFixedRevision();
+        }, (error) => {
+          this.tratarErro(error);
+        })
+    }
+    this.manutencao.itensManutencao = Array<ItemManutencao>();
+    this.storage.get('token').then(
+      token => {
+        this.codigoUsuario = this.jwtHelper.decodeToken(token).sub;
       });
-      this.storage.get('veiculo').then(
-        veiculo => {
-          if(veiculo == null){
-            this.veiculoSelecionado = (veiculo == null) ? this.veiculoSelecionado : veiculo;
-            this.mostrarToast("Não há veículos cadastrados, cadastre um veículo antes de prosseguir.");
-          } else {
-            this.veiculoSelecionado = veiculo;
-          }
+    this.storage.get('veiculo').then(
+      veiculo => {
+        if (veiculo == null) {
+          this.veiculoSelecionado = (veiculo == null) ? this.veiculoSelecionado : veiculo;
+          this.mostrarToast("Não há veículos cadastrados, cadastre um veículo antes de prosseguir.");
+        } else {
+          this.veiculoSelecionado = veiculo;
+        }
 
 
       });
   }
 
-  private fromHome(){
+  private fromHome() {
     return this.manutencao != null && this.manutencao.hasOwnProperty('diasRestantes');
   }
 
-  private isFixedRevision(){
+  private isFixedRevision() {
     return this.manutencao != null && this.manutencao['tipoManutencao'] == 'REVISAO';
   }
 
   aplicarMascara(campo, valor, mascara) {
-    this.manutencao[campo] = this.mask.atualizarValor(valor,mascara);
+    this.manutencao[campo] = this.mask.atualizarValor(valor, mascara);
   }
 
-  salvar(){
+  salvar() {
     (this.manutencao.codigo != null && this.manutencao.codigo != 0)
       ? this.alterar() : this.adicionar();
   }
@@ -124,26 +124,26 @@ export class CadastrarManutencaoPage {
       });
   }
 
-  itens(){
+  itens() {
     console.log("CadastrarManutencaoPage -> itens: " + this.manutencao);
-    this.navCtrl.push('ListarItensPage', {'manutencao' : this.manutencao});
+    this.navCtrl.push('ListarItensPage', { 'manutencao': this.manutencao });
   }
 
-  tratarSucesso(){
+  tratarSucesso() {
     this.mostrarToast('Sucesso!');
   }
 
-  tratarErro(error){
+  tratarErro(error) {
     (error.hasOwnProperty('error') && error.error.hasOwnProperty('message'))
-        ? this.mostrarToast(error.error.message, 'danger')
-          : this.mostrarToast('Ops! Não conseguimos recuperar suas informações. Por favor, tente novamente.', 'danger');
+      ? this.mostrarToast(error.error.message, 'danger')
+      : this.mostrarToast('Ops! Não conseguimos recuperar suas informações. Por favor, tente novamente.', 'danger');
   }
 
-  selecionarReparador(){
-    let modal: Modal = this.modalCtrl.create('BuscarOficinaPage', {'reparador': this.manutencao.nomeReparador});
+  selecionarReparador() {
+    let modal: Modal = this.modalCtrl.create('BuscarOficinaPage', { 'reparador': this.manutencao.nomeReparador });
     modal.present();
     modal.onWillDismiss((data) => {
-      if(data){
+      if (data) {
         this.manutencao.codigoReparador = data.codigoReparador;
         this.manutencao.nomeReparador = data.nomefantasia;
       }
@@ -160,33 +160,33 @@ export class CadastrarManutencaoPage {
         this.mostrarToast("Ops! Não conseguimos recuperar suas informações. Por favor, tente novamente.");
       })
   }
-inserirNovoItem(){
-  if(this.categoria){
-    this.inserirItem(new ItemManutencao(null,null,null,null,this.categoria,null),this.manutencao.itensManutencao.length);
-  }else{
-    this.mostrarToast("Por favor selecione a categoria.");
+  inserirNovoItem() {
+    if (this.categoria) {
+      this.inserirItem(new ItemManutencao(null, null, null, null, this.categoria, null), this.manutencao.itensManutencao.length);
+    } else {
+      this.mostrarToast("Por favor selecione a categoria.");
+    }
   }
-}
 
-  inserirItem(item : ItemManutencao, index){
-    let carro : boolean =  this.veiculoSelecionado.modalidade == 'Carro';
-    let modal: Modal = this.modalCtrl.create('CadastroItemPage', {'item': item,'carro': carro});
+  inserirItem(item: ItemManutencao, index) {
+    let carro: boolean = this.veiculoSelecionado.modalidade == 'Carro';
+    let modal: Modal = this.modalCtrl.create('CadastroItemPage', { 'item': item, 'carro': carro });
     modal.present();
     modal.onWillDismiss((data) => {
-      if(data){
+      if (data) {
         this.manutencao.itensManutencao[index] = data;
       }
     });
   }
 
-  mostrarToast(mensagem : string, clazz? : string) {
+  mostrarToast(mensagem: string, clazz?: string) {
     let cssClass = (clazz == undefined) ? 'default' : clazz;
     let toast = this.toastCtrl.create({
-        message: mensagem,
-        duration: 3000,
-        position: 'top',
-        cssClass: cssClass
-      });
+      message: mensagem,
+      duration: 3000,
+      position: 'top',
+      cssClass: cssClass
+    });
     toast.present();
   }
 }
