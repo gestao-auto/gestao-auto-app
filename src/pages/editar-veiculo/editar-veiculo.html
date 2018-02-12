@@ -31,7 +31,7 @@
       <ion-item>
         <ion-label floating >Modelos</ion-label>
         <ion-select [(ngModel)]="veiculoEditar.modelo" [compareWith]="compareMOD">
-          <ion-option *ngFor="let modelo of modelos" [value]="modelo" >{{modelo.nome}}</ion-option>
+          <ion-option *ngFor="let modelo of modelos" [value]="modelo" >{{modelo.nome  + " " + modelo.ano + " " + modelo.versao }}</ion-option>
         </ion-select>
       </ion-item>
 

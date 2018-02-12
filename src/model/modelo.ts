@@ -5,7 +5,8 @@ export class Modelo {
         public codigo: number,
         public nome: string,
         public marca: Marca,
-        public ano: number) {
+        public ano: number,
+        public versao : string) {
 
         }
 }

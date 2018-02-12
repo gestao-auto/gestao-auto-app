@@ -19,8 +19,8 @@
         <ion-label style="text-align:center"> Ano: {{v.ano}}/{{v.modelo.ano}}</ion-label>
       </ion-col>
       <ion-col >
-        <ion-label style="text-align:center">{{v.modelo.nome}}</ion-label>
-        <ion-label style="text-align:center">KM {{v.odometro}}</ion-label>
+        <ion-label style="text-align:center">{{v.modelo.nome + " " + v.modelo.versao}}</ion-label>
+        <ion-label style="text-align:center">{{v.odometro}} Km</ion-label>
       </ion-col>
     </ion-row>
   </ion-card>
