@@ -14,6 +14,14 @@
       </ion-item>
 
       <ion-item>
+        <ion-label floating>Modalidade</ion-label>
+        <ion-select [(ngModel)]="veiculoEditar.modalidade">
+          <ion-option value="Carro">Carro</ion-option>
+          <ion-option value="Motocicleta">Moto</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
         <ion-label floating >Marca</ion-label>
         <ion-select [(ngModel)]="marcaSelecionada" [compareWith]="compareMAR" (ionChange)="getModelos(marcaSelecionada.codigo)">
           <ion-option *ngFor="let marca of marcas" [value]="marca" >{{marca.nome}}</ion-option>
@@ -35,14 +43,6 @@
       <ion-item>
         <ion-label floating>Ano</ion-label>
         <ion-datetime displayFormat="YYYY" [(ngModel)]="veiculoEditar.ano"></ion-datetime>
-      </ion-item>
-
-      <ion-item>
-        <ion-label floating>Modalidade</ion-label>
-        <ion-select [(ngModel)]="veiculoEditar.modalidade">
-          <ion-option value="Carro">Carro</ion-option>
-          <ion-option value="Motocicleta">Moto</ion-option>
-        </ion-select>
       </ion-item>
 
       <ion-item>
@@ -72,4 +72,5 @@
 
     </ion-list>
     <button ion-button block color="primary" (click)="submit()">Salvar</button>
+    <button *ngIf="veiculoEditar != null && veiculoEditar.codigo != null" ion-button block (click)="apagar()" color="danger">Apagar</button>
 </ion-content>

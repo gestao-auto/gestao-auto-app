@@ -31,6 +31,13 @@ export class VeiculoPage {
                    });
   }
 
+  ionViewWillEnter() {
+    console.log('ionViewWillEnter VeiculoPage');
+    if(this.listaVeiculos != null && this.codigoUsuario != 0){
+      this.getByUser();
+    }
+  }
+
   getByUser(){
     this.veiculoProvider.getByUser(this.codigoUsuario)
       .then((veiculos: Array<Veiculo>) => {

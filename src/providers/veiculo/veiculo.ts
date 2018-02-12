@@ -69,7 +69,7 @@ export class VeiculoProvider {
 
   delete(veiculo) {
     return new Promise((resolve, reject) => {
-      this.http.put(URL_VEICULO + veiculo.codigo.toString(), {headers: this.contentHeader})
+      this.http.delete(URL_VEICULO + veiculo.codigo.toString(), {headers: this.contentHeader})
         .subscribe(data => {
           resolve(data);
         }, error => {

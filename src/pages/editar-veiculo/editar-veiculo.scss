@@ -30,3 +30,6 @@ page-editar-veiculo {
       font-weight: bold
   }
 }
+.danger .toast-wrapper{
+    background-color: color($colors, danger);
+}
