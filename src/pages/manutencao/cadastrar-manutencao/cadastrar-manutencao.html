@@ -122,5 +122,5 @@
   </ion-grid>
 </ion-card>
 <button ion-button block color="primary" (click)="salvar()" >Salvar</button>
-<button *ngIf="manutencao != null && manutencao.codigo != null" ion-button block color="primary" (click)="apagar()" color="danger">Apagar</button>
+<button *ngIf="manutencao != null && manutencao.codigo != null" ion-button block (click)="apagar()" color="danger">Apagar</button>
 </ion-content>
