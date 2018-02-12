@@ -2,28 +2,27 @@ import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpEventType } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { Storage } from "@ionic/storage";
+import { fromPromise } from 'rxjs/observable/fromPromise';
+import { mergeMap } from 'rxjs/operators/mergeMap';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-  token: string;
+  constructor(private storage: Storage) { }
 
-  constructor(private storage: Storage){
-    storage.ready().then(() => {
-      storage.get('token').then(token => {
-        this.token = token;
-      }).catch(console.log);
-    });
+  getToken(): Promise<any> {
+     return this.storage.get('token');
+   }
 
-  }
-
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<HttpEventType.Response>> {
-      const authReq = req.clone({
-        setHeaders: { Authorization: `Bearer ${this.token}` }
-      });
-      return next.handle(authReq);
-    }
-
-
-
-}
+   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+     return fromPromise(this.getToken()).pipe(
+          mergeMap(token => {
+              req = req.clone({
+                 setHeaders: {
+                     Authorization: `Bearer ${token}`
+                 }
+             });
+             return next.handle(req);
+         }));
+   }
+ }
