@@ -59,6 +59,7 @@ export class ListagemManutencaoPage {
           for(let man of this.manutencoes){
             this.calcularValorTotal(man);
           }
+          console.log("fim do get:", this.manutencoes);
         }
       }, (error) => {
           console.log(error);
@@ -106,7 +107,7 @@ export class ListagemManutencaoPage {
   }
 
   acessarManutencao(index){
-    console.log(this.itens);
+    console.log(this.manutencoes);
     this.navCtrl.push('CadastrarManutencaoPage', {'manutencao' : this.manutencoes[index]});
   }
 }

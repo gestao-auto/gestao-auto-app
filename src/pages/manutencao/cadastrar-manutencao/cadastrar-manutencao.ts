@@ -34,7 +34,7 @@ export class CadastrarManutencaoPage {
     private toastCtrl: ToastController,
     private modalCtrl: ModalController,
     private mask: Mask) {
-    console.log('CadastrarManutencaoPage - ' + this.navParams.get('manutencao'));
+    console.log('CadastrarManutencaoPage', this.navParams.get('manutencao'));
     this.getPecasServicos();
     this.fixoRevisao = false;
     this.codigoUsuario = "";
@@ -53,7 +53,7 @@ export class CadastrarManutencaoPage {
           this.tratarErro(error);
         })
     }
-    this.manutencao.itensManutencao = Array<ItemManutencao>();
+    //this.manutencao.itensManutencao = Array<ItemManutencao>();
     this.storage.get('token').then(
       token => {
         this.codigoUsuario = this.jwtHelper.decodeToken(token).sub;
