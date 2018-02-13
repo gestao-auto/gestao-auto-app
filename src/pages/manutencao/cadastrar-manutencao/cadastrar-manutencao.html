@@ -66,7 +66,14 @@
       </ion-label>
       <ion-input type="text" [(ngModel)]="manutencao.nomeReparador" disabled="true" (click)="selecionarReparador()"></ion-input>
     </ion-item>
-    <ion-item *ngIf="manutencao.codigo != null || (manutencao.itemManutencaoList != null && manutencao.itemManutencaoList.length > 0)">
+    <ion-item *ngIf="manutencao.tipoManutencao == 'SINISTRO'">
+      <ion-label stacked>
+        <ion-icon name="contact"></ion-icon>
+        Seguradora
+      </ion-label>
+      <ion-input type="text" [(ngModel)]="manutencao.nomeSeguradora" disabled="true" (click)="selecionarSeguradora()"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="manutencao.codigo != null || (manutencao.itensManutencao != null && manutencao.itensManutencao.length > 0)">
       <ion-label stacked *ngIf="manutencao.tipoManutencao != 'SINISTRO'">
         <ion-icon name="cash"></ion-icon>
         Valor total
@@ -75,7 +82,7 @@
         <ion-icon name="cash"></ion-icon>
         Franquia
       </ion-label>
-      <ion-input type="number" [(ngModel)]="manutencao.valorTotal" readonly (keyup)="aplicarMascara('valorTotal', manutencao.valorTotal,'999999.99')"></ion-input>
+      <ion-input type="text" [(ngModel)]="valorTotal" readonly ></ion-input>
     </ion-item>
     <ion-item>
       <ion-label stacked>
@@ -112,7 +119,7 @@
     <ion-row>
       <ion-col>
         <ion-label style="text-align:center">Valor</ion-label>
-        <ion-label style="text-align:center">R$ {{item.quantidade * item.valorUnitario}}</ion-label>
+        <ion-label style="text-align:center">R$ {{mask.converterParaString(item.quantidade * item.valorUnitario)}}</ion-label>
       </ion-col>
       <ion-col>
         <ion-label style="text-align:center">Observações</ion-label>

@@ -16,7 +16,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-card *ngFor="let m of manutencoes;" (click)="acessarManutencao(m)">
+  <ion-card *ngFor="let m of manutencoes;let i = index" (click)="acessarManutencao(i);">
     <ion-grid>
       <ion-row>
         <ion-col>
@@ -50,11 +50,11 @@
           </ion-label>
           <ion-label *ngIf="m.status != 'PENDENTE'">
             <ion-icon name="cash"></ion-icon>
-            &nbsp;R${{m.valorTotal}}
+            &nbsp;R$ {{m.valorTotal}}
           </ion-label>
           <ion-label *ngIf="m.status == 'PENDENTE'" class="estimado">
             <ion-icon name="cash"></ion-icon>
-            &nbsp;R${{m.valorTotal}}
+            &nbsp;R$ {{m.valorTotal}}
           </ion-label>
         </ion-col>
       </ion-row>

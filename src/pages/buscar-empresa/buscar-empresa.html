@@ -1,8 +1,7 @@
-
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Selecione o Reparador</ion-title>
+    <ion-title>Selecione {{titulo}}</ion-title>
     <ion-buttons end>
       <button ion-button solid color="primary" (click)="fecharModal()">
         Fechar
@@ -12,11 +11,12 @@
 
 </ion-header>
 
+
 <ion-content padding>
   <ion-searchbar [(ngModel)]="busca"  (ionInput)="getItems($event)"></ion-searchbar>
   <ion-list>
-    <ion-item *ngFor="let r of reparadores" (click)="selecionar(r)">
-      {{ r.nomefantasia }}
+    <ion-item *ngFor="let emp of empresas" (click)="selecionar(emp)">
+      {{ emp.nomefantasia }}
     </ion-item>
   </ion-list>
 </ion-content>

@@ -28,6 +28,7 @@ import { BackgroundMode } from '@ionic-native/background-mode';
 import { Mask } from '../utils/mask/mask';
 import { OficinaProvider } from '../providers/oficina/oficina';
 import { PecaServicoProvider } from '../providers/peca-servico/peca-servico';
+import { EmpresaProvider } from '../providers/empresa/empresa';
 
 var config={
       backButtonText: '',
@@ -69,7 +70,8 @@ var config={
     NotificacaoProvider,
     BackgroundMode,
     OficinaProvider,
-    PecaServicoProvider
+    PecaServicoProvider,
+    EmpresaProvider
   ]
 })
 export class AppModule {}

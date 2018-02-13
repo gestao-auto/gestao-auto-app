@@ -1,5 +1,5 @@
 import { ItemManutencao } from './itemManutencao';
-import { Reparador } from './reparador';
+import { Mask } from '../utils/mask/mask';
 export class Manutencao {
     constructor(
         public tipoManutencao: string,
@@ -8,6 +8,7 @@ export class Manutencao {
         public codigoReparador: number,
         public nomeReparador: string,
         public codigoSeguradora: number,
+        public nomeSeguradora: string,
         public codigoVeiculo: number,
         public odometro: number,
         public data: string,
@@ -15,6 +16,7 @@ export class Manutencao {
         public dataPrevista: string,
         public odometroPrevisto: number,
         public motivo: string,
-        public itensManutencao: Array<ItemManutencao>
+        public itensManutencao: Array<ItemManutencao>,
+        public valorTotal: string
     ) {}
 }

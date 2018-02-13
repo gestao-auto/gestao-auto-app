@@ -1,4 +1,4 @@
-export class Reparador {
+export class Empresa {
     constructor(
         public codigo: number,
         public cnpj: number,

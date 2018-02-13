@@ -104,6 +104,18 @@ export class Mask {
     var inteiro = novoValor.substring(0, this.len - 2);
     var decimal = novoValor.substring(this.len - 2, this.len);
     var novoValor = inteiro+ '.'+decimal;
+
     return Number(novoValor);
+  }
+
+  public converterParaString(num : Number) : string{
+  var numString = num.toString();
+  var indexSeparador = numString.indexOf('.');
+  if(indexSeparador == -1){
+    numString = numString + '.00';
+  }else if(indexSeparador == numString.length -2){
+    numString = numString + '0';
+  }
+  return numString;
   }
 }

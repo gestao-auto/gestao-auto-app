@@ -4,7 +4,6 @@ import { Storage } from "@ionic/storage";
 import { ManutencaoProvider } from '../../../providers/manutencao/manutencao';
 import { JwtHelper } from "angular2-jwt";
 import { Mask } from '../../../utils/mask/mask';
-import { Reparador } from '../../../model/reparador';
 import { Manutencao } from '../../../model/manutencao';
 import { ItemManutencao } from '../../../model/itemManutencao';
 import { PecaServico } from '../../../model/pecaServico';
@@ -24,6 +23,7 @@ export class CadastrarManutencaoPage {
   nomeReparador: string;
   listaPecas: Array<PecaServico>;
   categoria: PecaServico;
+  valorTotal: string;
   constructor(
     private navCtrl: NavController,
     private navParams: NavParams,
@@ -40,13 +40,14 @@ export class CadastrarManutencaoPage {
     this.codigoUsuario = "";
 
     this.manutencao = this.navParams.get('manutencao');
-    this.manutencao = (this.manutencao == null) ? new Manutencao(null, null, null, null, null, null, null, null, null, null, null, null, null, null) : this.manutencao;
+    console.log(this.manutencao);
+    this.manutencao = (this.manutencao == null) ? new Manutencao(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null) : this.manutencao;
     this.fixoRevisao = this.isFixedRevision();
     if (this.fromHome()) {
       console.log('CadastrarManutencaoPage - fromHome');
       this.manutencaoProvider.get(this.manutencao.codigo)
         .then((manutencao: Manutencao) => {
-          this.manutencao = (manutencao != null) ? manutencao : new Manutencao(null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+          this.manutencao = (manutencao != null) ? manutencao : new Manutencao(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null,null);
           this.fixoRevisao = this.isFixedRevision();
         }, (error) => {
           this.tratarErro(error);
@@ -65,8 +66,6 @@ export class CadastrarManutencaoPage {
         } else {
           this.veiculoSelecionado = veiculo;
         }
-
-
       });
   }
 
@@ -83,6 +82,11 @@ export class CadastrarManutencaoPage {
   }
 
   salvar() {
+    (this.manutencao.codigo != null && this.manutencao.codigo != 0)
+      ? this.alterar() : this.adicionar();
+  }
+
+  temp(){
     (this.manutencao.codigo != null && this.manutencao.codigo != 0)
       ? this.alterar() : this.adicionar();
   }
@@ -140,12 +144,23 @@ export class CadastrarManutencaoPage {
   }
 
   selecionarReparador() {
-    let modal: Modal = this.modalCtrl.create('BuscarOficinaPage', { 'reparador': this.manutencao.nomeReparador });
+    let modal: Modal = this.modalCtrl.create('BuscarEmpresaPage', { 'tipo': 'REPARADOR', 'empresa': this.manutencao.nomeReparador });
     modal.present();
     modal.onWillDismiss((data) => {
       if (data) {
-        this.manutencao.codigoReparador = data.codigoReparador;
+        this.manutencao.codigoReparador = data.codigo;
         this.manutencao.nomeReparador = data.nomefantasia;
+      }
+    });
+  }
+
+  selecionarSeguradora() {
+    let modal: Modal = this.modalCtrl.create('BuscarEmpresaPage', { 'tipo': 'SEGURADORA', 'empresa': this.manutencao.nomeSeguradora });
+    modal.present();
+    modal.onWillDismiss((data) => {
+      if (data) {
+        this.manutencao.codigoSeguradora = data.codigo;
+        this.manutencao.nomeSeguradora = data.nomefantasia;
       }
     });
   }
@@ -175,8 +190,18 @@ export class CadastrarManutencaoPage {
     modal.onWillDismiss((data) => {
       if (data) {
         this.manutencao.itensManutencao[index] = data;
+        this.calcularValorTotal();
       }
     });
+  }
+  calcularValorTotal(){
+    var total = 0;
+    if(this.manutencao.itensManutencao && this.manutencao.itensManutencao.length > 0){
+      for(let item of this.manutencao.itensManutencao){
+        total = total + (item.valorUnitario * item.quantidade);
+      }
+    }
+    this.valorTotal = "R$ "+ this.mask.gerarValorMonetario(this.mask.converterParaString(total));
   }
 
   mostrarToast(mensagem: string, clazz?: string) {

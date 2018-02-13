@@ -36,7 +36,8 @@ export class CadastroItemPage {
     this.carregarCategoria(this.item.pecaServico.codigo);
     this.setarPosicoesPagina();
     if(this.item.valorUnitario){
-      this.valorUnitario = mask.gerarValorMonetario(this.item.valorUnitario.toString());
+      ;
+      this.valorUnitario = mask.gerarValorMonetario(mask.converterParaString(this.item.valorUnitario));
     }
   }
 
