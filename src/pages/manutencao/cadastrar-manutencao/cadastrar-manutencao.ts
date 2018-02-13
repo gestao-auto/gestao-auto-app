@@ -52,13 +52,9 @@ export class CadastrarManutencaoPage {
           this.tratarErro(error);
         })
     }
-<<<<<<< HEAD
     if(!this.manutencao.itensManutencao){
       this.manutencao.itensManutencao = Array<ItemManutencao>();
     }
-=======
-    //this.manutencao.itensManutencao = Array<ItemManutencao>();
->>>>>>> 880f78fab33521d1723d5198131668f9543a4964
     this.storage.get('token').then(
       token => {
         this.codigoUsuario = this.jwtHelper.decodeToken(token).sub;
