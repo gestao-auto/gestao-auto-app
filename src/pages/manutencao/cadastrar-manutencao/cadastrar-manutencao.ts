@@ -40,7 +40,6 @@ export class CadastrarManutencaoPage {
     this.codigoUsuario = "";
 
     this.manutencao = this.navParams.get('manutencao');
-    console.log(this.manutencao);
     this.manutencao = (this.manutencao == null) ? new Manutencao(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null) : this.manutencao;
     this.fixoRevisao = this.isFixedRevision();
     if (this.fromHome()) {
@@ -53,7 +52,9 @@ export class CadastrarManutencaoPage {
           this.tratarErro(error);
         })
     }
-    this.manutencao.itensManutencao = Array<ItemManutencao>();
+    if(!this.manutencao.itensManutencao){
+      this.manutencao.itensManutencao = Array<ItemManutencao>();
+    }
     this.storage.get('token').then(
       token => {
         this.codigoUsuario = this.jwtHelper.decodeToken(token).sub;
@@ -67,6 +68,7 @@ export class CadastrarManutencaoPage {
           this.veiculoSelecionado = veiculo;
         }
       });
+      this.calcularValorTotal();
   }
 
   private fromHome() {
@@ -82,11 +84,7 @@ export class CadastrarManutencaoPage {
   }
 
   salvar() {
-    (this.manutencao.codigo != null && this.manutencao.codigo != 0)
-      ? this.alterar() : this.adicionar();
-  }
-
-  temp(){
+    this.manutencao.valorTotal = '0';
     (this.manutencao.codigo != null && this.manutencao.codigo != 0)
       ? this.alterar() : this.adicionar();
   }
@@ -134,6 +132,7 @@ export class CadastrarManutencaoPage {
   }
 
   tratarSucesso() {
+    this.navCtrl.setRoot('ListagemManutencaoPage');
     this.mostrarToast('Sucesso!');
   }
 

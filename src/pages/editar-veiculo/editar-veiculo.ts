@@ -95,7 +95,7 @@ export class EditarVeiculoPage {
     this.veiculoProvider.update(this.veiculoEditar, this.veiculoEditar.codigo)
       .then((res) => {
         if (res) {
-          this.navCtrl.push('VeiculoPage');
+          this.navCtrl.setRoot('VeiculoPage');
           this.mostrarToast("Veículo atualizado com sucesso!");
         }
       }, (error) => {

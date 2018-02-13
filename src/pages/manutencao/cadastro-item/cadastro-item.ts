@@ -31,9 +31,9 @@ export class CadastroItemPage {
     private mask : Mask
   ) {
     this.item = navParams.get('item');
-    this.item.quantidade = this.item.quantidade == null ? 0 : this.item.quantidade;
     this.carro = navParams.get('carro');
     this.carregarCategoria(this.item.pecaServico.codigo);
+    this.item.quantidade = this.item.quantidade == null && (this.pneu || this.suspensao) ? 0 : this.item.quantidade;
     this.setarPosicoesPagina();
     if(this.item.valorUnitario){
       ;
