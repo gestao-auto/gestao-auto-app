@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController,AlertController } from 'ionic-angular';
 import { ProprietarioProvider } from '../../providers/proprietario/proprietario';
 import { Storage } from "@ionic/storage";
 import { VeiculoProvider } from "../../providers/veiculo/veiculo";
+import { ManutencaoProvider } from "../../providers/manutencao/manutencao";
 import { Proprietario } from '../../model/proprietario';
 import { JwtHelper } from "angular2-jwt";
 import { Veiculo } from "../../model/veiculo";
@@ -28,7 +29,9 @@ export class EditarVeiculoPage {
     public navParams: NavParams,
     public storage: Storage,
     public toastCtrl: ToastController,
+    public alertCtrl: AlertController,
     public veiculoProvider: VeiculoProvider,
+    public manutencaoProvider: ManutencaoProvider,
     private propProvider: ProprietarioProvider,
     private mask: Mask
   ) {
@@ -106,9 +109,8 @@ export class EditarVeiculoPage {
   apagar() {
     this.veiculoProvider.delete(this.veiculoEditar)
       .then((veiculo: any) => {
-        console.log("VeiculoPage -> apagar -> veiculo");
+        this.navCtrl.setRoot('VeiculoPage');
         this.mostrarToast('Sucesso!');
-        this.navCtrl.pop();
       }, (error) => {
         this.tratarErro(error);
       });
@@ -142,6 +144,42 @@ export class EditarVeiculoPage {
 
   isExibirDataAquisicaoPrimeiroDono(unicoDono) {
     this.exibirDataAquisicaoPrimeiroDono = unicoDono;
+  }
+
+  iniciarExclusao(){
+    this.manutencaoProvider.getByVehicle(this.veiculoEditar.codigo)
+      .then((manutencoes: Array<any>) => {
+        if (manutencoes != null) {
+          this.showConfirm();
+        }else{
+          this.apagar();
+        }
+      }, (error) => {
+          console.log(error);
+            this.mostrarToast("Ops! Não conseguimos recuperar suas informações. Por favor, tente novamente.");
+      });
+  }
+
+  showConfirm() {
+    let confirm = this.alertCtrl.create({
+      title: 'Prosseguir com a exclusão?',
+      message: 'Há manutenções cadastradas para este veículo, deseja prosseguir com a exclusão?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          handler: () => {
+            console.log('Exclusão cancelada');
+          }
+        },
+        {
+          text: 'Excluir',
+          handler: () => {
+            this.apagar();
+          }
+        }
+      ]
+    });
+    confirm.present();
   }
 
   mostrarToast(mensagem: string, clazz?: string) {

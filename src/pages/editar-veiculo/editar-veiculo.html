@@ -72,5 +72,5 @@
 
     </ion-list>
     <button ion-button block color="primary" (click)="submit()">Salvar</button>
-    <button *ngIf="veiculoEditar != null && veiculoEditar.codigo != null" ion-button block (click)="apagar()" color="danger">Apagar</button>
+    <button *ngIf="veiculoEditar != null && veiculoEditar.codigo != null" ion-button block (click)="iniciarExclusao()" color="danger">Excluir</button>
 </ion-content>
