@@ -34,7 +34,6 @@ export class CadastrarManutencaoPage {
     private toastCtrl: ToastController,
     private modalCtrl: ModalController,
     private mask: Mask) {
-    console.log('CadastrarManutencaoPage', this.navParams.get('manutencao'));
     this.getPecasServicos();
     this.fixoRevisao = false;
     this.codigoUsuario = "";
@@ -126,11 +125,6 @@ export class CadastrarManutencaoPage {
       });
   }
 
-  itens() {
-    console.log("CadastrarManutencaoPage -> itens: " + this.manutencao);
-    this.navCtrl.push('ListarItensPage', { 'manutencao': this.manutencao });
-  }
-
   tratarSucesso() {
     this.navCtrl.setRoot('ListagemManutencaoPage');
     this.mostrarToast('Sucesso!');
@@ -174,6 +168,7 @@ export class CadastrarManutencaoPage {
         this.mostrarToast("Ops! Não conseguimos recuperar suas informações. Por favor, tente novamente.");
       })
   }
+
   inserirNovoItem() {
     if (this.categoria) {
       this.inserirItem(new ItemManutencao(null, null, null, null, this.categoria, null), this.manutencao.itensManutencao.length);
@@ -193,6 +188,11 @@ export class CadastrarManutencaoPage {
       }
     });
   }
+
+  removerItem(index){
+    this.manutencao.itensManutencao.splice(index,1);
+  }
+
   calcularValorTotal(){
     var total = 0;
     if(this.manutencao.itensManutencao && this.manutencao.itensManutencao.length > 0){

@@ -110,12 +110,10 @@
   </ion-grid>
 
 <ion-card *ngFor="let item of manutencao.itensManutencao; let i = index" (click)="inserirItem(item,i)">
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <ion-label style="text-align:center" class="principal">{{item.pecaServico.nome}}</ion-label>
-      </ion-col>
-    </ion-row>
+        <ion-item padding>
+          <ion-label style="text-align:center" class="principal">{{item.pecaServico.nome}}</ion-label>
+          <button default ion-button item-right color="danger" (click)="removerItem(i)"><ion-icon name="trash"></ion-icon></button>
+        </ion-item >
     <ion-row>
       <ion-col>
         <ion-label style="text-align:center">Valor</ion-label>
@@ -126,7 +124,6 @@
         <ion-label style="text-align:center">{{item.observacao}}</ion-label>
       </ion-col>
     </ion-row>
-  </ion-grid>
 </ion-card>
 <button ion-button block color="primary" (click)="salvar()" >Salvar</button>
 <button *ngIf="manutencao != null && manutencao.codigo != null" ion-button block (click)="apagar()" color="danger">Apagar</button>
