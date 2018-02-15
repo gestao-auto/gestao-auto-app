@@ -106,7 +106,7 @@ export class ListagemManutencaoPage {
     toast.present();
   }
 
-  acessarManutencao(index){
-    this.navCtrl.push('CadastrarManutencaoPage', {'manutencao' : this.manutencoes[index]});
+  acessarManutencao(manutencao){
+    this.navCtrl.push('CadastrarManutencaoPage', {'manutencao' : manutencao});
   }
 }
