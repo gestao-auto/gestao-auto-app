@@ -65,6 +65,7 @@ export class ProprietarioPage {
     this.propProvider.create(this.proprietario)
       .then((res) => {
         if (res) {
+          this.mostrarToast("Cadastro criado com sucesso!");
           this.navCtrl.push('HomePage');
         }
       }, (error) => {
@@ -76,7 +77,7 @@ export class ProprietarioPage {
     this.propProvider.update(this.proprietario)
       .then((res) => {
         if (res) {
-          this.navCtrl.push('HomePage');
+          this.mostrarToast("Registro atualizado com sucesso!");
         }
       }, (error) => {
         this.mostrarToast("Ops! Ocorreu uma falha ao cadastrar suas informações. Por favor, tente novamente.");

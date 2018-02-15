@@ -33,14 +33,14 @@
     <ion-item *ngIf="manutencao.tipoManutencao == 'REVISAO'">
       <ion-label stacked>
         <ion-icon name="speedometer"></ion-icon>
-        Hodometro previsto
+        Odômetro previsto
       </ion-label>
       <ion-input type="number" [(ngModel)]="manutencao.odometroPrevisto" readonly></ion-input>
     </ion-item>
     <ion-item>
       <ion-label stacked>
         <ion-icon name="speedometer"></ion-icon>
-        Hodometro realizado
+        Odômetro realizado
       </ion-label>
       <ion-input type="number" [(ngModel)]="manutencao.odometro" (keyup)="aplicarMascara('odometro', manutencao.odometro,'999999')"></ion-input>
     </ion-item>

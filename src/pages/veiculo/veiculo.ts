@@ -45,8 +45,8 @@ export class VeiculoPage {
             this.listaVeiculos = veiculos;
           }
         }, (error) => {
-          this.mostrarToast("Não há veículos cadastrados.");
-        })
+         //this.mostrarToast("Não há veículos cadastrados.");
+       });
   }
 
   novoVeiculo(){

@@ -110,7 +110,7 @@ export class EditarVeiculoPage {
     this.veiculoProvider.delete(this.veiculoEditar)
       .then((veiculo: any) => {
         this.navCtrl.setRoot('VeiculoPage');
-        this.mostrarToast('Sucesso!');
+        this.mostrarToast('Veículo excluído com sucesso!');
       }, (error) => {
         this.tratarErro(error);
       });
