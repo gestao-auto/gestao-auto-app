@@ -36,6 +36,7 @@
             <div class="principal">{{manutencao.descricao}}</div>
           </ion-col>
           <ion-col>
+
             <div class="secundario" *ngIf="manutencao.diasRestantes > 0">
               <ion-icon name="alarm"></ion-icon>
               {{manutencao.diasRestantes}} dias
@@ -75,8 +76,8 @@
           </ion-col>
           <ion-col>
             <div class="secundario">
-              <ion-icon name="cash"></ion-icon>
-              736,00
+              <!-- <ion-icon name="cash"></ion-icon>
+              736,00 -->
             </div>
           </ion-col>
         </ion-row>

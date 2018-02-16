@@ -56,8 +56,7 @@
         <ion-icon name="calendar"></ion-icon>
         Data realizada
       </ion-label>
-      <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="manutencao.data" *ngIf="manutencao.status != 'REALIZADA'"></ion-datetime>
-      <ion-input [(ngModel)]="manutencao.data" readonly *ngIf="manutencao.status == 'REALIZADA'"></ion-input>
+      <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="manutencao.data"></ion-datetime>
     </ion-item>
     <ion-item>
       <ion-label stacked>
