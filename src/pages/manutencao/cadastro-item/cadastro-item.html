@@ -51,9 +51,9 @@
         <ion-grid>
           <ion-row>
             <ion-col align style="text-align:right">
-              <ion-img *ngIf="carro && pneu" [src]="dianteiroEsquerdo  ? '../../assets/img/pneuchecked.png' : '../../assets/img/pneu.png'" width="76" height="76" style="background: transparent" (click)="calculaQuantidade(!dianteiroEsquerdo);dianteiroEsquerdo = !dianteiroEsquerdo"></ion-img>
-              <ion-img *ngIf="carro && suspensao" [src]="dianteiroEsquerdo  ? '../../assets/img/suspensaochecked.png' : '../../assets/img/suspensao.png'" width="76" height="76" style="background: transparent" (click)="calculaQuantidade(!dianteiroEsquerdo);dianteiroEsquerdo = !dianteiroEsquerdo"></ion-img>
-              <ion-img *ngIf="!carro && (pneu || suspensao)" src="../../assets/img/pneublank.png" width="76" height="76" style="background: transparent" ></ion-img>
+              <ion-img *ngIf="carro && pneu" [src]="dianteiroEsquerdo  ? 'assets/img/pneuchecked.png' : 'assets/img/pneu.png'" width="76" height="76" style="background: transparent" (click)="calculaQuantidade(!dianteiroEsquerdo);dianteiroEsquerdo = !dianteiroEsquerdo"></ion-img>
+              <ion-img *ngIf="carro && suspensao" [src]="dianteiroEsquerdo  ? 'assets/img/suspensaochecked.png' : 'assets/img/suspensao.png'" width="76" height="76" style="background: transparent" (click)="calculaQuantidade(!dianteiroEsquerdo);dianteiroEsquerdo = !dianteiroEsquerdo"></ion-img>
+              <ion-img *ngIf="!carro && (pneu || suspensao)" src="assets/img/pneublank.png" width="76" height="76" style="background: transparent" ></ion-img>
             </ion-col>
           </ion-row>
           <ion-row>
@@ -68,22 +68,22 @@
           </ion-row>
           <ion-row>
             <ion-col align style="text-align:right">
-                  <ion-img *ngIf="pneu" [src]="traseiroEsquerdo  ? '../../assets/img/pneuchecked.png' : '../../assets/img/pneu.png'" width="76" height="76" style="background: transparent" (click)="calculaQuantidade(!traseiroEsquerdo);traseiroEsquerdo = !traseiroEsquerdo"></ion-img>
-                  <ion-img *ngIf="suspensao" [src]="traseiroEsquerdo  ? '../../assets/img/suspensaochecked.png' : '../../assets/img/suspensao.png'" width="76" height="76" style="background: transparent" (click)="calculaQuantidade(!traseiroEsquerdo);traseiroEsquerdo = !traseiroEsquerdo"></ion-img>
+                  <ion-img *ngIf="pneu" [src]="traseiroEsquerdo  ? 'assets/img/pneuchecked.png' : 'assets/img/pneu.png'" width="76" height="76" style="background: transparent" (click)="calculaQuantidade(!traseiroEsquerdo);traseiroEsquerdo = !traseiroEsquerdo"></ion-img>
+                  <ion-img *ngIf="suspensao" [src]="traseiroEsquerdo  ? 'assets/img/suspensaochecked.png' : 'assets/img/suspensao.png'" width="76" height="76" style="background: transparent" (click)="calculaQuantidade(!traseiroEsquerdo);traseiroEsquerdo = !traseiroEsquerdo"></ion-img>
             </ion-col>
           </ion-row>
         </ion-grid>
       </ion-col>
       <ion-col align style="text-align:center">
-        <ion-img *ngIf="carro && (pneu || suspensao)" src="../../assets/img/cartopview.png" style="background: transparent" width="120" height="227"></ion-img>
-        <ion-img *ngIf="!carro && (pneu || suspensao)" src="../../assets/img/motoviewtop.png" style="background: transparent" width="82" height="212"></ion-img>
+        <ion-img *ngIf="carro && (pneu || suspensao)" src="assets/img/cartopview.png" style="background: transparent" width="120" height="227"></ion-img>
+        <ion-img *ngIf="!carro && (pneu || suspensao)" src="assets/img/motoviewtop.png" style="background: transparent" width="82" height="212"></ion-img>
       </ion-col>
       <ion-col>
         <ion-grid>
           <ion-row>
             <ion-col align style="text-align:left"  >
-              <ion-img *ngIf="pneu" [src]="dianteiroDireito  ? '../../assets/img/pneuchecked.png' : '../../assets/img/pneu.png'" width="76" height="76" style="background: transparent" (click)="calculaQuantidade(!dianteiroDireito);dianteiroDireito = !dianteiroDireito"></ion-img>
-              <ion-img *ngIf="suspensao" [src]="dianteiroDireito  ? '../../assets/img/suspensaochecked.png' : '../../assets/img/suspensao.png'" width="76" height="76" style="background: transparent" (click)="calculaQuantidade(!dianteiroDireito);dianteiroDireito = !dianteiroDireito"></ion-img>
+              <ion-img *ngIf="pneu" [src]="dianteiroDireito  ? 'assets/img/pneuchecked.png' : 'assets/img/pneu.png'" width="76" height="76" style="background: transparent" (click)="calculaQuantidade(!dianteiroDireito);dianteiroDireito = !dianteiroDireito"></ion-img>
+              <ion-img *ngIf="suspensao" [src]="dianteiroDireito  ? 'assets/img/suspensaochecked.png' : 'assets/img/suspensao.png'" width="76" height="76" style="background: transparent" (click)="calculaQuantidade(!dianteiroDireito);dianteiroDireito = !dianteiroDireito"></ion-img>
             </ion-col>
           </ion-row>
           <ion-row>
@@ -98,9 +98,9 @@
           </ion-row>
           <ion-row>
             <ion-col align style="text-align:left">
-                <ion-img *ngIf="carro && pneu" [src]="traseiroDireito  ? '../../assets/img/pneuchecked.png' : '../../assets/img/pneu.png'" width="76" height="76" style="background: transparent" (click)="calculaQuantidade(!traseiroDireito);traseiroDireito = !traseiroDireito"></ion-img>
-                <ion-img *ngIf="carro && suspensao" [src]="traseiroDireito  ? '../../assets/img/suspensaochecked.png' : '../../assets/img/suspensao.png'" width="76" height="76" style="background: transparent" (click)="calculaQuantidade(!traseiroDireito);traseiroDireito = !traseiroDireito"></ion-img>
-                <ion-img *ngIf="!carro && (pneu || suspensao)" src="../../assets/img/pneublank.png" width="76" height="76" style="background: transparent" ></ion-img>
+                <ion-img *ngIf="carro && pneu" [src]="traseiroDireito  ? 'assets/img/pneuchecked.png' : 'assets/img/pneu.png'" width="76" height="76" style="background: transparent" (click)="calculaQuantidade(!traseiroDireito);traseiroDireito = !traseiroDireito"></ion-img>
+                <ion-img *ngIf="carro && suspensao" [src]="traseiroDireito  ? 'assets/img/suspensaochecked.png' : 'assets/img/suspensao.png'" width="76" height="76" style="background: transparent" (click)="calculaQuantidade(!traseiroDireito);traseiroDireito = !traseiroDireito"></ion-img>
+                <ion-img *ngIf="!carro && (pneu || suspensao)" src="assets/img/pneublank.png" width="76" height="76" style="background: transparent" ></ion-img>
             </ion-col>
           </ion-row>
         </ion-grid>
@@ -108,7 +108,7 @@
     </ion-row>
     <ion-row>
       <ion-col align style="text-align:center">
-        <ion-img *ngIf="carro && pneu" [src]="estepe  ? '../../assets/img/pneuchecked.png' : '../../assets/img/pneu.png'" width="76" height="76" style="background: transparent" (click)="calculaQuantidade(!estepe);estepe = !estepe"></ion-img>
+        <ion-img *ngIf="carro && pneu" [src]="estepe  ? 'assets/img/pneuchecked.png' : 'assets/img/pneu.png'" width="76" height="76" style="background: transparent" (click)="calculaQuantidade(!estepe);estepe = !estepe"></ion-img>
       </ion-col>
     </ion-row>
   </ion-grid>
